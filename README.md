@@ -8,10 +8,12 @@
 
 - `index.html` — 首頁（促銷條、搜尋、分類、橫幅、優惠／熱賣）
 - `products.html` — 商品列表（分類篩選、搜尋）
-- `product.html?id=...` — 商品詳情（左圖預留 3D／右資訊選購）
+- `product.html?id=...` — 商品詳情（左圖／3D／選購）
+- `cart.html` — 購物車
+- `account.html` — 個人中心（資料、訂單、活動記錄）
+- `checkout.html` — 模擬結賬付款
 - `about.html` — 關於
 - `contact.html` — 顧客服務
-- `cart.html` — 購物車
 
 ## 3D 預覽
 

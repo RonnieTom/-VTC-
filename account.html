@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="青禾超市個人中心">
+  <title>青禾超市｜個人中心</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="topbar">滿 <strong>HK$200</strong> 免運 · 今日 16:00 前下單可安排明日配送</div>
+
+  <header class="site-header">
+    <div class="wrap header-main">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">青</span>
+        <span class="brand-text">
+          <strong>青禾超市</strong>
+          <span>網上新鮮雜貨</span>
+        </span>
+      </a>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品，例如：蘋果、鮮奶、菠菜" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <a class="loc-chip" href="account.html">個人中心</a>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
+    </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="products.html?cat=produce" data-cat="produce">新鮮蔬果</a></li>
+        <li><a href="products.html?cat=dairy" data-cat="dairy">乳品蛋類</a></li>
+        <li><a href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a></li>
+        <li><a href="products.html?cat=drinks" data-cat="drinks">飲品</a></li>
+        <li><a href="products.html?deals=1" data-cat="deals">優惠專區</a></li>
+        <li><a href="account.html" class="active">個人中心</a></li>
+        <li><a href="about.html">關於青禾</a></li>
+        <li><a href="contact.html">顧客服務</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div id="account-banner" class="msg warn" hidden></div>
+
+      <section class="account-layout">
+        <aside class="section account-side">
+          <div class="account-avatar" aria-hidden="true">會</div>
+          <h1 style="font-size:1.15rem;margin:0 0 4px;">個人中心</h1>
+          <p class="small" id="account-hello">尚未填寫個人資料</p>
+          <nav class="account-tabs" aria-label="個人中心選單">
+            <button type="button" class="account-tab active" data-tab="profile">個人資料</button>
+            <button type="button" class="account-tab" data-tab="orders">訂單記錄</button>
+            <button type="button" class="account-tab" data-tab="activity">其他記錄</button>
+          </nav>
+          <p class="small" style="margin-top:14px;"><a href="cart.html">返回購物車 →</a></p>
+        </aside>
+
+        <div class="account-main">
+          <section class="section account-panel" id="tab-profile">
+            <div class="section-head"><h2>個人資料</h2></div>
+            <div id="profile-msg" class="msg" hidden></div>
+            <form id="profile-form">
+              <div class="grid-2" style="gap:12px;">
+                <div class="form-row">
+                  <label for="pf-name">姓名 <span class="small">必填</span></label>
+                  <input type="text" id="pf-name" maxlength="40" autocomplete="name" required>
+                </div>
+                <div class="form-row">
+                  <label for="pf-phone">電話 <span class="small">必填</span></label>
+                  <input type="tel" id="pf-phone" maxlength="20" autocomplete="tel" required>
+                </div>
+                <div class="form-row">
+                  <label for="pf-email">電郵 <span class="small">選填</span></label>
+                  <input type="email" id="pf-email" maxlength="80" autocomplete="email">
+                </div>
+                <div class="form-row">
+                  <label for="pf-address">送貨地址 <span class="small">選填</span></label>
+                  <input type="text" id="pf-address" maxlength="120" autocomplete="street-address">
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-accent">儲存資料</button>
+                <button type="button" class="btn btn-ghost" id="btn-clear-profile">清除資料</button>
+                <a class="btn" id="btn-go-checkout" href="checkout.html" hidden>前往結賬</a>
+              </div>
+            </form>
+          </section>
+
+          <section class="section account-panel" id="tab-orders" hidden>
+            <div class="section-head"><h2>訂單記錄</h2></div>
+            <div id="orders-empty" class="small">暫時沒有訂單。<a href="products.html">去選購</a></div>
+            <div id="orders-list"></div>
+          </section>
+
+          <section class="section account-panel" id="tab-activity" hidden>
+            <div class="section-head"><h2>其他記錄</h2></div>
+            <div id="activity-empty" class="small">尚無記錄。</div>
+            <ul id="activity-list" class="activity-list"></ul>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h3>青禾超市</h3>
+        <p>新鮮食材與日常雜貨網上商店，支援鄰里配送與門市自取。</p>
+      </div>
+      <div>
+        <h3>購物</h3>
+        <ul>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="cart.html">購物車</a></li>
+          <li><a href="account.html">個人中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>幫助</h3>
+        <ul>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
+          <li>hello@qinghe-market.example</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap credits">© 青禾超市</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/account.js"></script>
+</body>
+</html>

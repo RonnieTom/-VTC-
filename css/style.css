@@ -733,32 +733,123 @@ button.btn:hover {
   color: var(--orange);
 }
 
-.profile-box {
+/* Account */
+.account-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.account-side { margin-bottom: 0; }
+.account-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, var(--green), var(--green-dark));
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.account-tabs {
+  display: grid;
+  gap: 6px;
   margin-top: 14px;
-  padding: 14px;
-  border: 1px dashed var(--line);
+}
+.account-tab {
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+.account-tab.active {
+  background: var(--green-soft);
+  border-color: #86d3a8;
+  color: var(--green-dark);
+  font-weight: 700;
+}
+.account-main .account-panel { margin-bottom: 0; }
+.account-main .form-row input { max-width: none; }
+.order-card {
+  border: 1px solid var(--line);
   border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
   background: #fafafa;
 }
-.profile-toggle {
+.order-head {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.order-status {
+  background: #ecfdf3;
+  color: #067647;
+  border: 1px solid #abefc6;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  height: fit-content;
+}
+.order-card .total { color: var(--orange); font-weight: 800; margin: 0; }
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.activity-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
+/* Checkout */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+  align-items: start;
+}
+.profile-summary {
+  background: #f8faf9;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.pay-methods {
+  display: grid;
   gap: 8px;
-  font-weight: 600;
+  margin-bottom: 14px;
+}
+.pay-card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
   cursor: pointer;
-  user-select: none;
 }
-.profile-toggle input {
-  width: 18px;
-  height: 18px;
+.pay-card.is-active {
+  border-color: var(--green);
+  background: var(--green-soft);
 }
-.profile-fields {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
-}
-.profile-fields .form-row input {
-  max-width: none;
+.pay-card input { margin-top: 3px; }
+.card-fields .form-row input { max-width: none; }
+
+@media (max-width: 900px) {
+  .account-layout,
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Tables */

@@ -24,6 +24,7 @@
         <button type="submit">搜尋</button>
       </form>
       <div class="header-actions">
+        <a class="loc-chip" href="account.html">個人中心</a>
         <span class="loc-chip">配送：港島／九龍</span>
         <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
         <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
@@ -38,6 +39,7 @@
         <li><a href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a></li>
         <li><a href="products.html?cat=drinks" data-cat="drinks">飲品</a></li>
         <li><a href="products.html?deals=1" data-cat="deals">優惠專區</a></li>
+        <li><a href="account.html">個人中心</a></li>
         <li><a href="about.html">關於青禾</a></li>
         <li><a href="contact.html">顧客服務</a></li>
       </ul>
@@ -68,42 +70,11 @@
           </table>
           <div class="summary-box" id="cart-summary" aria-live="polite"></div>
 
-          <div class="profile-box" id="profile-box">
-            <label class="profile-toggle">
-              <input type="checkbox" id="toggle-profile">
-              <span>添加個人資料（結算時需要）</span>
-            </label>
-            <div id="profile-fields" class="profile-fields" hidden>
-              <div class="grid-2" style="gap:12px;">
-                <div class="form-row">
-                  <label for="pf-name">姓名 <span class="small">必填</span></label>
-                  <input type="text" id="pf-name" maxlength="40" autocomplete="name" placeholder="收件人姓名">
-                </div>
-                <div class="form-row">
-                  <label for="pf-phone">電話 <span class="small">必填</span></label>
-                  <input type="tel" id="pf-phone" maxlength="20" autocomplete="tel" placeholder="聯絡電話">
-                </div>
-                <div class="form-row">
-                  <label for="pf-email">電郵 <span class="small">選填</span></label>
-                  <input type="email" id="pf-email" maxlength="80" autocomplete="email" placeholder="name@example.com">
-                </div>
-                <div class="form-row">
-                  <label for="pf-address">地址 <span class="small">選填</span></label>
-                  <input type="text" id="pf-address" maxlength="120" autocomplete="street-address" placeholder="送貨地址">
-                </div>
-              </div>
-              <div class="form-actions">
-                <button type="button" class="btn btn-sm" id="btn-save-profile">儲存資料</button>
-                <button type="button" class="btn btn-ghost btn-sm" id="btn-clear-profile">清除資料</button>
-              </div>
-              <p class="small" id="profile-status" hidden></p>
-            </div>
-          </div>
-
           <div class="form-actions" style="margin-top:14px;">
-            <button type="button" class="btn btn-accent" id="btn-checkout">確認結算</button>
+            <button type="button" class="btn btn-accent" id="btn-checkout">前往結賬</button>
             <button type="button" class="btn btn-ghost" id="btn-clear">清空</button>
             <a class="btn btn-ghost" href="products.html">繼續購物</a>
+            <a class="btn btn-ghost" href="account.html">個人中心</a>
           </div>
         </div>
       </section>
@@ -133,6 +104,7 @@
           <li><a href="products.html">全部商品</a></li>
           <li><a href="products.html?deals=1">優惠專區</a></li>
           <li><a href="cart.html">購物車</a></li>
+          <li><a href="account.html">個人中心</a></li>
         </ul>
       </div>
       <div>

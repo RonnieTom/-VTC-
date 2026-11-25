@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="青禾超市模擬結賬">
+  <title>青禾超市｜結賬付款</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="topbar">此為課程示範結賬流程 · 不會產生真實扣款</div>
+
+  <header class="site-header">
+    <div class="wrap header-main">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">青</span>
+        <span class="brand-text">
+          <strong>青禾超市</strong>
+          <span>網上新鮮雜貨</span>
+        </span>
+      </a>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品，例如：蘋果、鮮奶、菠菜" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <a class="loc-chip" href="account.html">個人中心</a>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
+    </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="account.html">個人中心</a></li>
+        <li><a href="contact.html">顧客服務</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="breadcrumb"><a href="cart.html">購物車</a> / 結賬付款</p>
+      <div id="checkout-msg" class="msg" hidden></div>
+
+      <section id="checkout-empty" class="section" hidden>
+        <h1 style="font-size:1.2rem;">沒有待結賬商品</h1>
+        <p><a class="btn" href="products.html">去選購</a> <a class="btn btn-ghost" href="cart.html">返回購物車</a></p>
+      </section>
+
+      <section id="checkout-block" class="checkout-layout" hidden>
+        <div class="section">
+          <div class="section-head"><h1 style="margin:0;font-size:1.2rem;">訂單摘要</h1></div>
+          <table class="data">
+            <thead>
+              <tr><th>商品</th><th>數量</th><th>小計</th></tr>
+            </thead>
+            <tbody id="checkout-items"></tbody>
+          </table>
+          <div class="summary-box" id="checkout-summary"></div>
+
+          <div class="section-head" style="margin-top:18px;"><h2>收件資料</h2></div>
+          <div id="checkout-profile" class="profile-summary"></div>
+          <p class="small"><a href="account.html?next=checkout">更改個人資料 →</a></p>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>模擬付款</h2></div>
+          <p class="small">請選擇付款方式（示範，不會真正扣款）。</p>
+
+          <div class="pay-methods" role="radiogroup" aria-label="付款方式">
+            <label class="pay-card">
+              <input type="radio" name="pay-method" value="fps" checked>
+              <span><strong>轉數快</strong><br><span class="small">即時到帳（模擬）</span></span>
+            </label>
+            <label class="pay-card">
+              <input type="radio" name="pay-method" value="card">
+              <span><strong>信用卡</strong><br><span class="small">Visa / Mastercard（模擬）</span></span>
+            </label>
+            <label class="pay-card">
+              <input type="radio" name="pay-method" value="cod">
+              <span><strong>貨到付款</strong><br><span class="small">取貨時支付現金</span></span>
+            </label>
+          </div>
+
+          <div id="card-fields" class="card-fields" hidden>
+            <div class="form-row">
+              <label for="card-name">持卡人姓名</label>
+              <input type="text" id="card-name" maxlength="40" placeholder="與信用卡相同" autocomplete="cc-name">
+            </div>
+            <div class="form-row">
+              <label for="card-number">卡號</label>
+              <input type="text" id="card-number" maxlength="19" placeholder="4242 4242 4242 4242" inputmode="numeric" autocomplete="cc-number">
+            </div>
+            <div class="grid-2" style="gap:12px;">
+              <div class="form-row">
+                <label for="card-exp">有效期</label>
+                <input type="text" id="card-exp" maxlength="5" placeholder="MM/YY" autocomplete="cc-exp">
+              </div>
+              <div class="form-row">
+                <label for="card-cvc">CVC</label>
+                <input type="password" id="card-cvc" maxlength="4" placeholder="123" inputmode="numeric" autocomplete="cc-csc">
+              </div>
+            </div>
+          </div>
+
+          <div id="fps-hint" class="summary-box">
+            <p class="small" style="margin:0;">模擬轉數快：確認後會即時標記為已付款。</p>
+          </div>
+
+          <div class="form-actions" style="margin-top:16px;">
+            <button type="button" class="btn btn-accent" id="btn-pay">確認付款</button>
+            <a class="btn btn-ghost" href="cart.html">返回購物車</a>
+          </div>
+          <p class="small" id="pay-progress" hidden>正在處理付款…</p>
+        </div>
+      </section>
+
+      <section id="checkout-success" class="section" hidden>
+        <h1 style="font-size:1.3rem;color:#067647;">付款成功</h1>
+        <p id="success-text"></p>
+        <div class="form-actions">
+          <a class="btn" href="account.html?tab=orders">查看訂單</a>
+          <a class="btn btn-ghost" href="products.html">繼續購物</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h3>青禾超市</h3>
+        <p>新鮮食材與日常雜貨網上商店，支援鄰里配送與門市自取。</p>
+      </div>
+      <div>
+        <h3>購物</h3>
+        <ul>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="cart.html">購物車</a></li>
+          <li><a href="account.html">個人中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>幫助</h3>
+        <ul>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
+          <li>hello@qinghe-market.example</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap credits">© 青禾超市</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
