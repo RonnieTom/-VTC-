@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="青禾超市付款成功">
+  <title>青禾超市｜付款成功</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="topbar">訂單已建立 · 此為課程示範，不會產生真實扣款</div>
+
+  <header class="site-header">
+    <div class="wrap header-main">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">青</span>
+        <span class="brand-text">
+          <strong>青禾超市</strong>
+          <span>網上新鮮雜貨</span>
+        </span>
+      </a>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <a class="loc-chip" href="account.html">個人中心</a>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
+    </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="account.html">個人中心</a></li>
+        <li><a href="contact.html">顧客服務</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="section success-page" id="success-panel">
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h1>付款成功</h1>
+        <p id="success-lead" class="success-lead">正在載入訂單資料…</p>
+
+        <div class="summary-box" id="success-summary"></div>
+
+        <div class="form-actions" style="margin-top:18px;justify-content:center;">
+          <a class="btn" href="account.html?tab=orders">查看訂單記錄</a>
+          <a class="btn btn-ghost" href="products.html">繼續購物</a>
+          <a class="btn btn-ghost" href="index.html">返回首頁</a>
+        </div>
+      </section>
+
+      <section class="section" id="success-missing" hidden>
+        <h1 style="font-size:1.2rem;">找不到訂單資料</h1>
+        <p class="small">可能已過期或尚未完成付款。</p>
+        <div class="form-actions">
+          <a class="btn" href="account.html?tab=orders">前往訂單記錄</a>
+          <a class="btn btn-ghost" href="products.html">去選購</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h3>青禾超市</h3>
+        <p>新鮮食材與日常雜貨網上商店。</p>
+      </div>
+      <div>
+        <h3>購物</h3>
+        <ul>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="cart.html">購物車</a></li>
+          <li><a href="account.html">個人中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>幫助</h3>
+        <ul>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap credits">© 青禾超市</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/order-success.js"></script>
+</body>
+</html>

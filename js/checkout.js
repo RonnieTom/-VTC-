@@ -51,8 +51,6 @@
     var profile = window.LaneMart.readProfile();
     var empty = $("checkout-empty");
     var block = $("checkout-block");
-    var success = $("checkout-success");
-    if (success) success.hidden = true;
 
     if (!cart.length) {
       if (empty) empty.hidden = false;
@@ -177,20 +175,8 @@
         window.LaneMart.money(order.grand) + "）"
       );
       window.LaneMart.writeCart([]);
-
-      if ($("checkout-block")) $("checkout-block").hidden = true;
-      if ($("checkout-success")) $("checkout-success").hidden = false;
-      if ($("success-text")) {
-        $("success-text").textContent =
-          profile.name + "，訂單 " + order.id + " 已建立。" +
-          (method === "cod"
-            ? "請於取貨時付款 " + window.LaneMart.money(order.grand) + "。"
-            : "已模擬扣款 " + window.LaneMart.money(order.grand) + "。");
-      }
-      if (msg) msg.hidden = true;
-      if (btn) btn.disabled = false;
-      if (progress) progress.hidden = true;
       window.LaneMart.updateCartBadge();
+      window.location.href = "order-success.html?order=" + encodeURIComponent(order.id);
     }, 900);
   }
 
