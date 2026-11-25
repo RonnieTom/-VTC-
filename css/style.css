@@ -733,6 +733,34 @@ button.btn:hover {
   color: var(--orange);
 }
 
+.profile-box {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: #fafafa;
+}
+.profile-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+.profile-toggle input {
+  width: 18px;
+  height: 18px;
+}
+.profile-fields {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.profile-fields .form-row input {
+  max-width: none;
+}
+
 /* Tables */
 table.data {
   width: 100%;

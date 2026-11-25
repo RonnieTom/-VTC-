@@ -1,6 +1,8 @@
-/* 購物車清單與結算 */
+/* 購物車清單、個人資料與結算 */
 (function () {
   "use strict";
+
+  var PROFILE_KEY = "qingheMartProfile";
 
   function ready(fn) {
     if (document.readyState !== "loading") fn();
@@ -16,6 +18,117 @@
     box.className = "msg " + type;
     box.textContent = text;
     box.hidden = false;
+  }
+
+  function readProfile() {
+    try {
+      var raw = localStorage.getItem(PROFILE_KEY);
+      var data = raw ? JSON.parse(raw) : null;
+      return data && typeof data === "object" ? data : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function writeProfile(profile) {
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile || {}));
+  }
+
+  function clearProfileStorage() {
+    localStorage.removeItem(PROFILE_KEY);
+  }
+
+  function trim(v) {
+    return String(v || "").replace(/^\s+|\s+$/g, "");
+  }
+
+  function profileComplete(p) {
+    return !!(p && trim(p.name) && trim(p.phone));
+  }
+
+  function fillProfileForm(profile) {
+    if ($("pf-name")) $("pf-name").value = profile.name || "";
+    if ($("pf-phone")) $("pf-phone").value = profile.phone || "";
+    if ($("pf-email")) $("pf-email").value = profile.email || "";
+    if ($("pf-address")) $("pf-address").value = profile.address || "";
+  }
+
+  function collectProfileForm() {
+    return {
+      name: trim($("pf-name") && $("pf-name").value),
+      phone: trim($("pf-phone") && $("pf-phone").value),
+      email: trim($("pf-email") && $("pf-email").value),
+      address: trim($("pf-address") && $("pf-address").value)
+    };
+  }
+
+  function setProfileOpen(open, focusName) {
+    var toggle = $("toggle-profile");
+    var fields = $("profile-fields");
+    if (toggle) toggle.checked = !!open;
+    if (fields) fields.hidden = !open;
+    if (open && focusName && $("pf-name")) $("pf-name").focus();
+  }
+
+  function updateProfileStatus(profile) {
+    var status = $("profile-status");
+    if (!status) return;
+    if (profileComplete(profile)) {
+      status.hidden = false;
+      status.textContent =
+        "已儲存：" + profile.name + "／" + profile.phone +
+        (profile.address ? "／" + profile.address : "");
+    } else if (trim(profile.name) || trim(profile.phone) || trim(profile.email) || trim(profile.address)) {
+      status.hidden = false;
+      status.textContent = "資料未完整：結算前請填寫姓名與電話。";
+    } else {
+      status.hidden = true;
+      status.textContent = "";
+    }
+  }
+
+  function initProfileUI() {
+    var profile = readProfile();
+    fillProfileForm(profile);
+    updateProfileStatus(profile);
+    if (profileComplete(profile) || trim(profile.name) || trim(profile.phone)) {
+      setProfileOpen(true, false);
+    } else {
+      setProfileOpen(false, false);
+    }
+
+    var toggle = $("toggle-profile");
+    if (toggle) {
+      toggle.addEventListener("change", function () {
+        setProfileOpen(toggle.checked, toggle.checked);
+      });
+    }
+
+    if ($("btn-save-profile")) {
+      $("btn-save-profile").addEventListener("click", function (e) {
+        e.preventDefault();
+        var next = collectProfileForm();
+        if (!next.name || !next.phone) {
+          showMsg($("cart-msg"), "err", "儲存個人資料需填寫姓名與電話。");
+          setProfileOpen(true, true);
+          return;
+        }
+        writeProfile(next);
+        updateProfileStatus(next);
+        showMsg($("cart-msg"), "ok", "個人資料已儲存。");
+      });
+    }
+
+    if ($("btn-clear-profile")) {
+      $("btn-clear-profile").addEventListener("click", function (e) {
+        e.preventDefault();
+        clearProfileStorage();
+        fillProfileForm({});
+        updateProfileStatus({});
+        setProfileOpen(false, false);
+        showMsg($("cart-msg"), "ok", "個人資料已清除。");
+      });
+    }
   }
 
   function renderCart() {
@@ -102,11 +215,27 @@
       return;
     }
 
+    /* 結算前若表單已打開，先同步最新輸入 */
+    var profile = collectProfileForm();
+    if (!profileComplete(profile)) {
+      profile = readProfile();
+    }
+
+    if (!profileComplete(profile)) {
+      setProfileOpen(true, true);
+      showMsg(msg, "warn", "請先勾選並填寫個人資料（姓名、電話）再結算。");
+      var box = $("profile-box");
+      if (box && box.scrollIntoView) box.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    /* 自動儲存一次，避免下次再填 */
+    writeProfile(profile);
+    updateProfileStatus(profile);
+
     var total = 0;
-    var customer = "顧客";
     for (var i = 0; i < cart.length; i++) {
       total += (Number(cart[i].price) || 0) * (parseInt(cart[i].qty, 10) || 0);
-      if (cart[i].customer) customer = cart[i].customer;
     }
     var shipping = total >= 200 ? 0 : 20;
     var grand = total + shipping;
@@ -116,22 +245,22 @@
     showMsg(
       msg,
       "ok",
-      customer + "，訂單已提交，應付 " + window.LaneMart.money(grand) + "。謝謝惠顧！"
+      profile.name + "，訂單已提交，應付 " + window.LaneMart.money(grand) +
+        "。我們會以 " + profile.phone + " 聯絡您。謝謝惠顧！"
     );
   }
 
   ready(function () {
     if (!$("cart-body")) return;
-    var clearBtn = $("btn-clear");
-    var checkoutBtn = $("btn-checkout");
-    if (clearBtn) {
-      clearBtn.addEventListener("click", function (e) {
+    initProfileUI();
+    if ($("btn-clear")) {
+      $("btn-clear").addEventListener("click", function (e) {
         e.preventDefault();
         clearCart();
       });
     }
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener("click", function (e) {
+    if ($("btn-checkout")) {
+      $("btn-checkout").addEventListener("click", function (e) {
         e.preventDefault();
         checkout();
       });

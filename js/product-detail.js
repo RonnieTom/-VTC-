@@ -254,13 +254,6 @@
   function addToCart(product) {
     var qty = getQty();
     var msg = $("order-msg");
-    var nameInput = $("customer-name");
-    var name = nameInput ? nameInput.value.replace(/^\s+|\s+$/g, "") : "";
-    if (!name) {
-      showMsg(msg, "err", "請輸入姓名。");
-      if (nameInput) nameInput.focus();
-      return;
-    }
     if (qty === null || qty < 1 || qty > 99) {
       showMsg(msg, "err", "請輸入 1 至 99 的數量。");
       return;
@@ -275,14 +268,12 @@
     }
     if (found) {
       found.qty = Math.min(99, (parseInt(found.qty, 10) || 0) + qty);
-      found.customer = name;
     } else {
       cart.push({
         id: product.id,
         name: product.name + (product.pack ? "（" + product.pack + "）" : ""),
         price: product.price,
-        qty: qty,
-        customer: name
+        qty: qty
       });
     }
     window.LaneMart.writeCart(cart);
