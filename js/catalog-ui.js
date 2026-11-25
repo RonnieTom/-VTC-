@@ -18,23 +18,29 @@
     var badge = p.badge
       ? '<span class="badge ' + badgeClass(p.badge) + '">' + p.badge + "</span>"
       : "";
+    var badge3d = p.sketchfab
+      ? '<span class="badge-3d" title="支援 3D 預覽">3D</span>'
+      : "";
     var was = p.was
       ? '<span class="was">' + window.LaneMart.money(p.was) + "</span>"
       : "";
+    var detail = "product.html?id=" + p.id;
+    var detail3d = detail + "&view=3d";
     return (
       '<article class="p-card" data-id="' + p.id + '" data-cat="' + p.cat + '">' +
-      badge +
-      '<a class="thumb" href="product.html?id=' + p.id + '">' +
-      '<img src="' + p.image + '" width="400" height="400" alt="' + p.name + '">' +
+      badge + badge3d +
+      '<a class="thumb" href="' + detail + '">' +
+      '<img src="' + p.image + '" width="400" height="400" alt="' + p.name + '" loading="lazy">' +
       "</a>" +
       '<div class="body">' +
-      '<a class="name" href="product.html?id=' + p.id + '">' + p.name + "</a>" +
+      '<a class="name" href="' + detail + '">' + p.name + "</a>" +
       '<div class="pack">' + (p.pack || p.unit || "") + "</div>" +
       '<div class="price-row"><span class="price">' + window.LaneMart.money(p.price) +
       "</span>" + was + "</div>" +
       '<div class="actions">' +
-      '<a class="btn btn-ghost" href="product.html?id=' + p.id + '">詳情</a>' +
-      '<a class="btn" href="product.html?id=' + p.id + '">選購</a>' +
+      '<a class="btn btn-ghost" href="' + (p.sketchfab ? detail3d : detail) + '">' +
+      (p.sketchfab ? "3D" : "詳情") + "</a>" +
+      '<a class="btn" href="' + detail + '">選購</a>' +
       "</div></div></article>"
     );
   }

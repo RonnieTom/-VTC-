@@ -13,6 +13,14 @@
 - `contact.html` — 顧客服務
 - `cart.html` — 購物車
 
+## 3D 預覽
+
+商品詳情頁支援 Sketchfab 嵌入預覽：
+
+- 預設顯示靜態圖，點「3D 預覽」才懶加載 iframe（`preload=0`、`autostart=0`）
+- 切回圖片會卸載 iframe，釋放 WebGL
+- 各商品使用較低面數的公開模型，並顯示作者出處
+
 ## 預覽
 
 ```bash

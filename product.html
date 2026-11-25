@@ -60,8 +60,14 @@
         <div class="pdp-media">
           <div id="product-media-stage" class="product-media-stage" data-view="image" data-model="" data-product-id="">
             <img id="pd-image" src="" alt="" width="640" height="640">
+            <div id="model-loading" class="model-loading" hidden>正在載入 3D 模型…</div>
+            <div id="model-host" class="model-host" hidden></div>
           </div>
-          <div class="media-tools is-pending" aria-hidden="true"></div>
+          <div class="media-tools" id="media-tools" hidden>
+            <button type="button" class="btn btn-sm media-tab active" id="btn-view-image" aria-pressed="true">圖片</button>
+            <button type="button" class="btn btn-sm btn-ghost media-tab" id="btn-view-3d" aria-pressed="false">3D 預覽</button>
+          </div>
+          <p class="model-credit small" id="model-credit" hidden></p>
         </div>
 
         <div class="pdp-info">
