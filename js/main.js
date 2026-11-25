@@ -1,15 +1,12 @@
-/* 共用導覽與購物車數量顯示 — 原生 JS，無框架 */
+/* 共用：購物車、搜尋、分類導覽 */
 (function () {
   "use strict";
 
   var CART_KEY = "qingheMartCart";
 
   function ready(fn) {
-    if (document.readyState !== "loading") {
-      fn();
-    } else {
-      document.addEventListener("DOMContentLoaded", fn);
-    }
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
   }
 
   function readCart() {
@@ -34,79 +31,91 @@
   }
 
   function updateCartBadge() {
-    var el = document.getElementById("cart-count");
-    if (el) {
-      el.textContent = String(cartCount());
-    }
+    var nodes = document.querySelectorAll("[data-cart-count]");
+    var n = String(cartCount());
+    for (var i = 0; i < nodes.length; i++) nodes[i].textContent = n;
   }
 
-  function setActiveNav() {
-    var path = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
-    if (!path) path = "index.html";
-    if (path === "product.html") path = "products.html";
-    var links = document.querySelectorAll(".nav-inner a");
-    for (var i = 0; i < links.length; i++) {
-      links[i].className = links[i].className.replace(/\bactive\b/g, "").replace(/\s+/g, " ").trim();
-      var href = (links[i].getAttribute("href") || "").toLowerCase();
-      if (href === path || (path === "" && href === "index.html")) {
-        links[i].className = (links[i].className + " active").trim();
+  function money(n) {
+    return "HK$ " + (Number(n) || 0).toFixed(2);
+  }
+
+  function bindSearch() {
+    var form = document.getElementById("site-search");
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = document.getElementById("search-q");
+      var q = input ? input.value.replace(/^\s+|\s+$/g, "") : "";
+      if (!q) {
+        window.location.href = "products.html";
+        return;
       }
-    }
+      window.location.href = "products.html?q=" + encodeURIComponent(q);
+    });
   }
 
   function bindMenuToggle() {
     var btn = document.getElementById("menu-toggle");
-    var nav = document.getElementById("site-nav");
+    var nav = document.getElementById("cat-nav");
     if (!btn || !nav) return;
 
     var mq = window.matchMedia ? window.matchMedia("(max-width: 640px)") : null;
-
-    function syncCollapsed() {
-      var mobile = mq ? mq.matches : false;
-      if (mobile) {
+    function sync() {
+      if (mq && mq.matches) {
         if (nav.className.indexOf("is-collapsed") < 0) {
-          nav.className = (nav.className + " is-collapsed").trim();
+          nav.className += " is-collapsed";
         }
-        btn.setAttribute("aria-expanded", "false");
       } else {
         nav.className = nav.className.replace(/\bis-collapsed\b/g, "").trim();
-        btn.setAttribute("aria-expanded", "true");
       }
     }
-
-    syncCollapsed();
+    sync();
     if (mq) {
-      if (mq.addEventListener) mq.addEventListener("change", syncCollapsed);
-      else if (mq.addListener) mq.addListener(syncCollapsed);
+      if (mq.addEventListener) mq.addEventListener("change", sync);
+      else if (mq.addListener) mq.addListener(sync);
     }
 
     btn.addEventListener("click", function () {
       if (nav.className.indexOf("is-collapsed") >= 0) {
         nav.className = nav.className.replace(/\bis-collapsed\b/g, "").trim();
-        btn.setAttribute("aria-expanded", "true");
       } else {
         nav.className = (nav.className + " is-collapsed").trim();
-        btn.setAttribute("aria-expanded", "false");
       }
     });
   }
 
-  // 暴露給其他腳本
+  function highlightCatNav() {
+    var params = new URLSearchParams(window.location.search || "");
+    var cat = params.get("cat") || "";
+    var deals = params.get("deals");
+    var path = (window.location.pathname.split("/").pop() || "").toLowerCase();
+    var links = document.querySelectorAll(".cat-nav a[data-cat]");
+    for (var i = 0; i < links.length; i++) {
+      var key = links[i].getAttribute("data-cat") || "";
+      var active = false;
+      if (path.indexOf("product") === 0 || path === "products.html") {
+        if (deals === "1" && key === "deals") active = true;
+        else if (!deals && cat && key === cat) active = true;
+        else if (!deals && !cat && key === "all" && path === "products.html") active = true;
+      }
+      if (active) links[i].className = (links[i].className + " active").replace(/\s+/g, " ").trim();
+    }
+  }
+
   window.LaneMart = {
     CART_KEY: CART_KEY,
     readCart: readCart,
     writeCart: writeCart,
     cartCount: cartCount,
     updateCartBadge: updateCartBadge,
-    money: function (n) {
-      var v = Number(n) || 0;
-      return "HK$ " + v.toFixed(2);
-    }
+    money: money
   };
 
   ready(function () {
-    setActiveNav();
-    bindMenuToggle();
     updateCartBadge();
+    bindSearch();
+    bindMenuToggle();
+    highlightCatNav();
   });
 })();

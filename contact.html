@@ -4,54 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="聯絡青禾超市">
-  <title>青禾超市｜聯絡</title>
+  <title>青禾超市｜顧客服務</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="topbar">滿 <strong>HK$200</strong> 免運 · 今日 16:00 前下單可安排明日配送</div>
+
   <header class="site-header">
-    <div class="header-inner">
+    <div class="wrap header-main">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true">青</span>
+        <span class="brand-mark">青</span>
         <span class="brand-text">
           <strong>青禾超市</strong>
-          <span>新鮮 · 日常 · 精選</span>
+          <span>網上新鮮雜貨</span>
         </span>
       </a>
-      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品，例如：蘋果、鮮奶、菠菜" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <span class="loc-chip">配送：港島／九龍</span>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
     </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="products.html?cat=produce" data-cat="produce">新鮮蔬果</a></li>
+        <li><a href="products.html?cat=dairy" data-cat="dairy">乳品蛋類</a></li>
+        <li><a href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a></li>
+        <li><a href="products.html?cat=drinks" data-cat="drinks">飲品</a></li>
+        <li><a href="products.html?deals=1" data-cat="deals">優惠專區</a></li>
+        <li><a href="about.html">關於青禾</a></li>
+        <li><a href="contact.html" class="active">顧客服務</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
-    <div class="nav-inner">
-      <a href="index.html">首頁</a>
-      <a href="products.html">商品</a>
-      <a href="about.html">關於</a>
-      <a href="contact.html" class="active">聯絡</a>
-      <a href="cart.html">購物車</a>
-    </div>
-  </nav>
-
   <main>
-    <div class="main-inner">
-      <section class="panel">
-        <div class="panel-title">
-          <h1>聯絡我們</h1>
-        </div>
-        <p>訂單、配送或商品問題，歡迎留言，我們會盡快回覆。</p>
-      </section>
-
+    <div class="wrap">
       <section class="grid-2">
-        <article class="panel" style="margin:0;">
-          <h2>留言</h2>
+        <article class="section" style="margin:0;">
+          <div class="section-head"><h1 style="margin:0;font-size:1.25rem;">聯絡我們</h1></div>
           <form id="contact-form" action="#" method="get" novalidate>
             <div class="form-row">
               <label for="c-name">姓名</label>
-              <input type="text" id="c-name" name="name" required maxlength="40" placeholder="您的姓名">
+              <input type="text" id="c-name" name="name" required maxlength="40">
             </div>
             <div class="form-row">
               <label for="c-email">電郵</label>
-              <input type="email" id="c-email" name="email" required placeholder="name@example.com">
+              <input type="email" id="c-email" name="email" required>
             </div>
             <div class="form-row">
               <label for="c-topic">主題</label>
@@ -64,25 +69,20 @@
             </div>
             <div class="form-row">
               <label for="c-message">內容</label>
-              <textarea id="c-message" name="message" required maxlength="500" placeholder="請寫下您的問題"></textarea>
+              <textarea id="c-message" name="message" required maxlength="500"></textarea>
             </div>
             <div class="form-actions">
               <button type="submit" class="btn btn-accent">送出</button>
-              <button type="reset" class="btn btn-secondary">清空</button>
+              <button type="reset" class="btn btn-ghost">清空</button>
             </div>
             <div id="contact-msg" class="msg" hidden></div>
           </form>
         </article>
 
-        <aside class="panel" style="margin:0;">
-          <h2>門市資料</h2>
+        <aside class="section" style="margin:0;">
+          <div class="section-head"><h2>門市資料</h2></div>
           <table class="data">
-            <thead>
-              <tr>
-                <th>項目</th>
-                <th>資料</th>
-              </tr>
-            </thead>
+            <thead><tr><th>項目</th><th>資料</th></tr></thead>
             <tbody>
               <tr><td>電郵</td><td>hello@qinghe-market.example</td></tr>
               <tr><td>電話</td><td>2345 6789</td></tr>
@@ -90,55 +90,57 @@
               <tr><td>地址</td><td>青禾道 18 號地下</td></tr>
             </tbody>
           </table>
-          <figure class="figure">
-            <img src="images/store.svg" width="640" height="360" alt="青禾超市門市">
-            <figcaption>門市位置示意</figcaption>
-          </figure>
+          <img src="images/store.svg" width="640" height="360" alt="門市" style="border-radius:8px;margin-top:12px;">
         </aside>
       </section>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner footer-grid">
+    <div class="wrap footer-grid">
       <div>
         <h3>青禾超市</h3>
-        <p>新鮮食材與日常雜貨，陪你把每一餐準備得更好。</p>
+        <p>新鮮食材與日常雜貨網上商店，支援鄰里配送與門市自取。</p>
       </div>
       <div>
-        <h3>逛逛</h3>
+        <h3>購物</h3>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">商品</a></li>
-          <li><a href="about.html">關於</a></li>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="products.html?deals=1">優惠專區</a></li>
+          <li><a href="cart.html">購物車</a></li>
         </ul>
       </div>
       <div>
-        <h3>服務</h3>
+        <h3>幫助</h3>
         <ul>
-          <li>週一至日 08:00–22:00</li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
           <li>hello@qinghe-market.example</li>
         </ul>
       </div>
     </div>
-    <div class="footer-inner credits">© 青禾超市</div>
+    <div class="wrap credits">© 青禾超市</div>
   </footer>
 
   <script src="js/main.js"></script>
   <script>
     (function () {
-      "use strict";
       var form = document.getElementById("contact-form");
       var msg = document.getElementById("contact-msg");
       if (!form) return;
-
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var name = document.getElementById("c-name").value.replace(/^\s+|\s+$/g, "");
         var email = document.getElementById("c-email").value.replace(/^\s+|\s+$/g, "");
         var message = document.getElementById("c-message").value.replace(/^\s+|\s+$/g, "");
         var topic = document.getElementById("c-topic").value;
-
         if (!name || !email || !message) {
           msg.className = "msg err";
           msg.textContent = "請填寫姓名、電郵與內容。";
@@ -151,10 +153,9 @@
           msg.hidden = false;
           return;
         }
-
         var labels = { order: "訂單", product: "商品", delivery: "配送", other: "其他" };
         msg.className = "msg ok";
-        msg.textContent = name + "，已收到您的「" + (labels[topic] || topic) + "」訊息，我們會回覆 " + email + "。";
+        msg.textContent = name + "，已收到您的「" + (labels[topic] || topic) + "」訊息。";
         msg.hidden = false;
         form.reset();
       });

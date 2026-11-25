@@ -8,83 +8,80 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="topbar">滿 <strong>HK$200</strong> 免運 · 今日 16:00 前下單可安排明日配送</div>
+
   <header class="site-header">
-    <div class="header-inner">
+    <div class="wrap header-main">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true">青</span>
+        <span class="brand-mark">青</span>
         <span class="brand-text">
           <strong>青禾超市</strong>
-          <span>新鮮 · 日常 · 精選</span>
+          <span>網上新鮮雜貨</span>
         </span>
       </a>
-      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品，例如：蘋果、鮮奶、菠菜" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <span class="loc-chip">配送：港島／九龍</span>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
     </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="products.html?cat=produce" data-cat="produce">新鮮蔬果</a></li>
+        <li><a href="products.html?cat=dairy" data-cat="dairy">乳品蛋類</a></li>
+        <li><a href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a></li>
+        <li><a href="products.html?cat=drinks" data-cat="drinks">飲品</a></li>
+        <li><a href="products.html?deals=1" data-cat="deals">優惠專區</a></li>
+        <li><a href="about.html">關於青禾</a></li>
+        <li><a href="contact.html">顧客服務</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
-    <div class="nav-inner">
-      <a href="index.html">首頁</a>
-      <a href="products.html">商品</a>
-      <a href="about.html">關於</a>
-      <a href="contact.html">聯絡</a>
-      <a href="cart.html" class="active">購物車</a>
-    </div>
-  </nav>
-
   <main>
-    <div class="main-inner">
-      <section class="panel">
-        <div class="panel-title">
-          <h1>購物車</h1>
+    <div class="wrap">
+      <section class="section">
+        <div class="section-head">
+          <h1 style="margin:0;font-size:1.25rem;">購物車</h1>
         </div>
         <div id="cart-msg" class="msg" hidden></div>
         <p id="cart-empty" class="small" hidden>購物車是空的。<a href="products.html">去選購</a></p>
-      </section>
 
-      <section class="panel" id="cart-table-wrap" hidden>
-        <table class="data">
-          <thead>
-            <tr>
-              <th>商品</th>
-              <th>單價</th>
-              <th>數量</th>
-              <th>小計</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="cart-body"></tbody>
-        </table>
-
-        <div class="summary-box" id="cart-summary" aria-live="polite"></div>
-
-        <div class="form-actions" style="margin-top:14px;">
-          <button type="button" class="btn btn-accent" id="btn-checkout">確認結算</button>
-          <button type="button" class="btn btn-secondary" id="btn-clear">清空</button>
-          <a class="btn btn-secondary" href="products.html">繼續購物</a>
+        <div id="cart-table-wrap" hidden>
+          <table class="data">
+            <thead>
+              <tr>
+                <th>商品</th>
+                <th>單價</th>
+                <th>數量</th>
+                <th>小計</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="cart-body"></tbody>
+          </table>
+          <div class="summary-box" id="cart-summary" aria-live="polite"></div>
+          <div class="form-actions" style="margin-top:14px;">
+            <button type="button" class="btn btn-accent" id="btn-checkout">確認結算</button>
+            <button type="button" class="btn btn-ghost" id="btn-clear">清空</button>
+            <a class="btn btn-ghost" href="products.html">繼續購物</a>
+          </div>
         </div>
       </section>
 
-      <section class="panel">
-        <div class="panel-title">
-          <h2>運費</h2>
-        </div>
+      <section class="section">
+        <div class="section-head"><h2>運費說明</h2></div>
         <table class="data">
-          <thead>
-            <tr>
-              <th>條件</th>
-              <th>運費</th>
-            </tr>
-          </thead>
+          <thead><tr><th>條件</th><th>運費</th></tr></thead>
           <tbody>
-            <tr>
-              <td>小計未滿 HK$200</td>
-              <td class="num">HK$ 20.00</td>
-            </tr>
-            <tr>
-              <td>小計滿 HK$200</td>
-              <td class="num">免運費</td>
-            </tr>
+            <tr><td>小計未滿 HK$200</td><td class="num">HK$ 20.00</td></tr>
+            <tr><td>小計滿 HK$200</td><td class="num">免運費</td></tr>
           </tbody>
         </table>
       </section>
@@ -92,28 +89,36 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner footer-grid">
+    <div class="wrap footer-grid">
       <div>
         <h3>青禾超市</h3>
-        <p>新鮮食材與日常雜貨，陪你把每一餐準備得更好。</p>
+        <p>新鮮食材與日常雜貨網上商店，支援鄰里配送與門市自取。</p>
       </div>
       <div>
-        <h3>逛逛</h3>
+        <h3>購物</h3>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">商品</a></li>
-          <li><a href="contact.html">聯絡</a></li>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="products.html?deals=1">優惠專區</a></li>
+          <li><a href="cart.html">購物車</a></li>
         </ul>
       </div>
       <div>
-        <h3>服務</h3>
+        <h3>幫助</h3>
         <ul>
-          <li>週一至日 08:00–22:00</li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
           <li>hello@qinghe-market.example</li>
         </ul>
       </div>
     </div>
-    <div class="footer-inner credits">© 青禾超市</div>
+    <div class="wrap credits">© 青禾超市</div>
   </footer>
 
   <script src="js/main.js"></script>

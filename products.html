@@ -4,113 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="青禾超市商品目錄">
-  <title>青禾超市｜商品</title>
+  <title>青禾超市｜全部商品</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="topbar">滿 <strong>HK$200</strong> 免運 · 今日 16:00 前下單可安排明日配送</div>
+
   <header class="site-header">
-    <div class="header-inner">
+    <div class="wrap header-main">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true">青</span>
+        <span class="brand-mark">青</span>
         <span class="brand-text">
           <strong>青禾超市</strong>
-          <span>新鮮 · 日常 · 精選</span>
+          <span>網上新鮮雜貨</span>
         </span>
       </a>
-      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品，例如：蘋果、鮮奶、菠菜" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <span class="loc-chip">配送：港島／九龍</span>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
     </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="products.html?cat=produce" data-cat="produce">新鮮蔬果</a></li>
+        <li><a href="products.html?cat=dairy" data-cat="dairy">乳品蛋類</a></li>
+        <li><a href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a></li>
+        <li><a href="products.html?cat=drinks" data-cat="drinks">飲品</a></li>
+        <li><a href="products.html?deals=1" data-cat="deals">優惠專區</a></li>
+        <li><a href="about.html">關於青禾</a></li>
+        <li><a href="contact.html">顧客服務</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
-    <div class="nav-inner">
-      <a href="index.html">首頁</a>
-      <a href="products.html" class="active">商品</a>
-      <a href="about.html">關於</a>
-      <a href="contact.html">聯絡</a>
-      <a href="cart.html">購物車</a>
-    </div>
-  </nav>
-
   <main>
-    <div class="main-inner">
-      <section class="panel">
-        <div class="panel-title">
-          <h1>商品</h1>
+    <div class="wrap">
+      <section class="section">
+        <div class="section-head">
+          <h1 style="margin:0;font-size:1.25rem;">全部商品</h1>
+          <span class="small" id="search-hint" hidden></span>
         </div>
-        <div class="grid-3">
-          <article class="product-card">
-            <a class="card-link" href="product.html?id=apple">
-              <div class="thumb"><img src="images/apple.svg" width="400" height="300" alt="富士蘋果"></div>
-            </a>
-            <div class="body">
-              <h2>富士蘋果（約 600g）</h2>
-              <p class="small">產地直送，口感脆甜。</p>
-              <p class="price">HK$ 22.00</p>
-              <div class="actions"><a class="btn btn-block" href="product.html?id=apple">選此商品</a></div>
-            </div>
-          </article>
-          <article class="product-card">
-            <a class="card-link" href="product.html?id=milk">
-              <div class="thumb"><img src="images/milk.svg" width="400" height="300" alt="全脂鮮奶"></div>
-            </a>
-            <div class="body">
-              <h2>全脂鮮奶 1L</h2>
-              <p class="small">當日冷藏到店。</p>
-              <p class="price">HK$ 26.00</p>
-              <div class="actions"><a class="btn btn-block" href="product.html?id=milk">選此商品</a></div>
-            </div>
-          </article>
-          <article class="product-card">
-            <a class="card-link" href="product.html?id=eggs">
-              <div class="thumb"><img src="images/eggs.svg" width="400" height="300" alt="新鮮雞蛋"></div>
-            </a>
-            <div class="body">
-              <h2>新鮮雞蛋（6 隻）</h2>
-              <p class="small">蛋黃飽滿，適合家常料理。</p>
-              <p class="price">HK$ 18.00</p>
-              <div class="actions"><a class="btn btn-block" href="product.html?id=eggs">選此商品</a></div>
-            </div>
-          </article>
-          <article class="product-card">
-            <a class="card-link" href="product.html?id=bread">
-              <div class="thumb"><img src="images/bread.svg" width="400" height="300" alt="全麥吐司"></div>
-            </a>
-            <div class="body">
-              <h2>全麥吐司</h2>
-              <p class="small">烘焙當日，口感扎實。</p>
-              <p class="price">HK$ 24.00</p>
-              <div class="actions"><a class="btn btn-block" href="product.html?id=bread">選此商品</a></div>
-            </div>
-          </article>
-          <article class="product-card">
-            <a class="card-link" href="product.html?id=spinach">
-              <div class="thumb"><img src="images/spinach.svg" width="400" height="300" alt="有機菠菜"></div>
-            </a>
-            <div class="body">
-              <h2>有機菠菜 250g</h2>
-              <p class="small">無農藥種植，洗淨即可烹調。</p>
-              <p class="price">HK$ 16.00</p>
-              <div class="actions"><a class="btn btn-block" href="product.html?id=spinach">選此商品</a></div>
-            </div>
-          </article>
-          <article class="product-card">
-            <a class="card-link" href="product.html?id=juice">
-              <div class="thumb"><img src="images/juice.svg" width="400" height="300" alt="鮮搾橙汁"></div>
-            </a>
-            <div class="body">
-              <h2>鮮搾橙汁 1L</h2>
-              <p class="small">無添加糖，冰鎮更佳。</p>
-              <p class="price">HK$ 32.00</p>
-              <div class="actions"><a class="btn btn-block" href="product.html?id=juice">選此商品</a></div>
-            </div>
-          </article>
+
+        <div class="filter-bar" aria-label="篩選">
+          <a class="chip" href="products.html" data-cat="all">全部</a>
+          <a class="chip" href="products.html?cat=produce" data-cat="produce">新鮮蔬果</a>
+          <a class="chip" href="products.html?cat=dairy" data-cat="dairy">乳品蛋類</a>
+          <a class="chip" href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a>
+          <a class="chip" href="products.html?cat=drinks" data-cat="drinks">飲品</a>
+          <a class="chip" href="products.html?deals=1" data-deals="1">限時優惠</a>
         </div>
+
+        <div class="product-grid" id="product-grid"></div>
       </section>
 
-      <section class="panel">
-        <div class="panel-title">
-          <h2>價目表</h2>
+      <section class="section">
+        <div class="section-head">
+          <h2>價目一覽</h2>
         </div>
         <table class="data">
           <thead>
@@ -122,12 +78,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>A01</td><td><a href="product.html?id=apple">富士蘋果（約 600g）</a></td><td>蔬果</td><td class="num">22.00</td></tr>
-            <tr><td>M02</td><td><a href="product.html?id=milk">全脂鮮奶 1L</a></td><td>乳品</td><td class="num">26.00</td></tr>
-            <tr><td>E03</td><td><a href="product.html?id=eggs">新鮮雞蛋（6 隻）</a></td><td>蛋品</td><td class="num">18.00</td></tr>
+            <tr><td>A01</td><td><a href="product.html?id=apple">富士蘋果</a></td><td>蔬果</td><td class="num">22.00</td></tr>
+            <tr><td>M02</td><td><a href="product.html?id=milk">全脂鮮奶</a></td><td>乳品</td><td class="num">26.00</td></tr>
+            <tr><td>E03</td><td><a href="product.html?id=eggs">新鮮雞蛋</a></td><td>蛋品</td><td class="num">18.00</td></tr>
             <tr><td>B04</td><td><a href="product.html?id=bread">全麥吐司</a></td><td>烘焙</td><td class="num">24.00</td></tr>
-            <tr><td>S05</td><td><a href="product.html?id=spinach">有機菠菜 250g</a></td><td>蔬果</td><td class="num">16.00</td></tr>
-            <tr><td>J06</td><td><a href="product.html?id=juice">鮮搾橙汁 1L</a></td><td>飲品</td><td class="num">32.00</td></tr>
+            <tr><td>S05</td><td><a href="product.html?id=spinach">有機菠菜</a></td><td>蔬果</td><td class="num">16.00</td></tr>
+            <tr><td>J06</td><td><a href="product.html?id=juice">鮮搾橙汁</a></td><td>飲品</td><td class="num">32.00</td></tr>
           </tbody>
         </table>
       </section>
@@ -135,30 +91,40 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner footer-grid">
+    <div class="wrap footer-grid">
       <div>
         <h3>青禾超市</h3>
-        <p>新鮮食材與日常雜貨，陪你把每一餐準備得更好。</p>
+        <p>新鮮食材與日常雜貨網上商店，支援鄰里配送與門市自取。</p>
       </div>
       <div>
-        <h3>逛逛</h3>
+        <h3>購物</h3>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="about.html">關於</a></li>
-          <li><a href="contact.html">聯絡</a></li>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="products.html?deals=1">優惠專區</a></li>
+          <li><a href="cart.html">購物車</a></li>
         </ul>
       </div>
       <div>
-        <h3>服務</h3>
+        <h3>幫助</h3>
         <ul>
-          <li>週一至日 08:00–22:00</li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
           <li>hello@qinghe-market.example</li>
         </ul>
       </div>
     </div>
-    <div class="footer-inner credits">© 青禾超市</div>
+    <div class="wrap credits">© 青禾超市</div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/catalog-ui.js"></script>
 </body>
 </html>

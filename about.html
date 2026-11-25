@@ -4,102 +4,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="關於青禾超市">
-  <title>青禾超市｜關於</title>
+  <title>青禾超市｜關於我們</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="topbar">滿 <strong>HK$200</strong> 免運 · 今日 16:00 前下單可安排明日配送</div>
+
   <header class="site-header">
-    <div class="header-inner">
+    <div class="wrap header-main">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true">青</span>
+        <span class="brand-mark">青</span>
         <span class="brand-text">
           <strong>青禾超市</strong>
-          <span>新鮮 · 日常 · 精選</span>
+          <span>網上新鮮雜貨</span>
         </span>
       </a>
-      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+      <form class="search-box" id="site-search" role="search">
+        <input id="search-q" type="search" name="q" placeholder="搜尋商品，例如：蘋果、鮮奶、菠菜" autocomplete="off">
+        <button type="submit">搜尋</button>
+      </form>
+      <div class="header-actions">
+        <span class="loc-chip">配送：港島／九龍</span>
+        <a class="cart-chip" href="cart.html">購物車 <span class="count" data-cart-count>0</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="cat-nav">分類</button>
+      </div>
     </div>
+    <nav class="cat-nav" id="cat-nav" aria-label="商品分類">
+      <ul class="wrap cat-nav-inner">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" data-cat="all">全部商品</a></li>
+        <li><a href="products.html?cat=produce" data-cat="produce">新鮮蔬果</a></li>
+        <li><a href="products.html?cat=dairy" data-cat="dairy">乳品蛋類</a></li>
+        <li><a href="products.html?cat=bakery" data-cat="bakery">麵包烘焙</a></li>
+        <li><a href="products.html?cat=drinks" data-cat="drinks">飲品</a></li>
+        <li><a href="products.html?deals=1" data-cat="deals">優惠專區</a></li>
+        <li><a href="about.html" class="active">關於青禾</a></li>
+        <li><a href="contact.html">顧客服務</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
-    <div class="nav-inner">
-      <a href="index.html">首頁</a>
-      <a href="products.html">商品</a>
-      <a href="about.html" class="active">關於</a>
-      <a href="contact.html">聯絡</a>
-      <a href="cart.html">購物車</a>
-    </div>
-  </nav>
-
   <main>
-    <div class="main-inner">
-      <section class="panel">
-        <div class="panel-title">
-          <h1>關於青禾</h1>
-        </div>
-        <p>青禾超市專注新鮮食材與家常雜貨。我們相信好食材不必複雜——清楚來源、實在價錢、準時送到，就夠了。</p>
-        <p>店內以蔬果、乳品、蛋類、烘焙與飲品為主，適合每週補貨，也適合臨時採買。</p>
+    <div class="wrap">
+      <section class="section">
+        <div class="section-head"><h1 style="margin:0;font-size:1.25rem;">關於青禾超市</h1></div>
+        <p>青禾超市專注新鮮食材與家常雜貨，提供網上訂購、鄰里配送與門市自取，方便每日補貨。</p>
+        <p>我們以蔬果、乳品、蛋類、烘焙與飲品為主，標價清楚，配送條件透明。</p>
       </section>
 
       <section class="grid-2">
-        <article class="panel" style="margin:0;">
-          <h2>我們在意的事</h2>
+        <article class="section" style="margin:0;">
+          <h2>我們在意</h2>
           <ul>
             <li>優先採購當季、短途運送的蔬果</li>
-            <li>冷藏品全程控溫，到店即上架</li>
-            <li>標價透明，結帳一目了然</li>
+            <li>冷藏品全程控溫</li>
+            <li>滿 HK$200 免運</li>
           </ul>
         </article>
-        <figure class="panel figure" style="margin:0;">
-          <img src="images/store.svg" width="640" height="360" alt="青禾超市門市">
-          <figcaption>青禾超市門市</figcaption>
+        <figure class="section" style="margin:0;">
+          <img src="images/store.svg" width="640" height="360" alt="青禾超市門市" style="border-radius:8px;">
+          <figcaption class="small" style="margin-top:8px;">青禾超市門市</figcaption>
         </figure>
       </section>
 
-      <section class="panel" style="margin-top:20px;">
-        <div class="panel-title">
-          <h2>營業資訊</h2>
-        </div>
+      <section class="section" style="margin-top:16px;">
+        <div class="section-head"><h2>營業與配送</h2></div>
         <table class="data">
           <thead>
-            <tr>
-              <th>項目</th>
-              <th>內容</th>
-            </tr>
+            <tr><th>項目</th><th>內容</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td>營業時間</td>
-              <td>每日 08:00 – 22:00</td>
-            </tr>
-            <tr>
-              <td>配送</td>
-              <td>鄰里範圍；滿 HK$200 免運，否則 HK$20</td>
-            </tr>
-            <tr>
-              <td>取貨</td>
-              <td>亦可到門市自取</td>
-            </tr>
-            <tr>
-              <td>付款</td>
-              <td>現金、轉數快、信用卡</td>
-            </tr>
+            <tr><td>營業時間</td><td>每日 08:00 – 22:00</td></tr>
+            <tr><td>配送範圍</td><td>港島／九龍鄰里區域</td></tr>
+            <tr><td>運費</td><td>未滿 HK$200 收 HK$20；滿額免運</td></tr>
+            <tr><td>取貨</td><td>可到門市自取</td></tr>
+            <tr><td>付款</td><td>現金、轉數快、信用卡</td></tr>
           </tbody>
         </table>
       </section>
 
       <section class="grid-2">
-        <figure class="panel figure" style="margin:0;">
-          <img src="images/aisle.svg" width="640" height="360" alt="超市貨架">
-          <figcaption>店內貨架</figcaption>
+        <figure class="section" style="margin:0;">
+          <img src="images/aisle.svg" width="640" height="360" alt="超市貨架" style="border-radius:8px;">
+          <figcaption class="small" style="margin-top:8px;">店內貨架</figcaption>
         </figure>
-        <article class="panel" style="margin:0;">
+        <article class="section" style="margin:0;">
           <h2>採購原則</h2>
           <ol>
             <li>蔬果以當日到貨為優先</li>
             <li>乳品與蛋類每日檢查效期</li>
-            <li>減少不必要包裝，推廣自備購物袋</li>
+            <li>減少不必要包裝</li>
           </ol>
         </article>
       </section>
@@ -107,28 +101,36 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner footer-grid">
+    <div class="wrap footer-grid">
       <div>
         <h3>青禾超市</h3>
-        <p>新鮮食材與日常雜貨，陪你把每一餐準備得更好。</p>
+        <p>新鮮食材與日常雜貨網上商店，支援鄰里配送與門市自取。</p>
       </div>
       <div>
-        <h3>逛逛</h3>
+        <h3>購物</h3>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">商品</a></li>
-          <li><a href="contact.html">聯絡</a></li>
+          <li><a href="products.html">全部商品</a></li>
+          <li><a href="products.html?deals=1">優惠專區</a></li>
+          <li><a href="cart.html">購物車</a></li>
         </ul>
       </div>
       <div>
-        <h3>服務</h3>
+        <h3>幫助</h3>
         <ul>
-          <li>週一至日 08:00–22:00</li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>青禾道 18 號地下</li>
+          <li>2345 6789</li>
           <li>hello@qinghe-market.example</li>
         </ul>
       </div>
     </div>
-    <div class="footer-inner credits">© 青禾超市</div>
+    <div class="wrap credits">© 青禾超市</div>
   </footer>
 
   <script src="js/main.js"></script>

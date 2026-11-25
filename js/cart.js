@@ -54,7 +54,7 @@
         '<td class="num">' + window.LaneMart.money(item.price) + "</td>" +
         '<td class="num">' + qty + "</td>" +
         '<td class="num">' + window.LaneMart.money(line) + "</td>" +
-        '<td><button type="button" class="btn btn-secondary" data-remove="' +
+        '<td><button type="button" class="btn btn-ghost btn-sm" data-remove="' +
         item.id + '">移除</button></td>';
       tbody.appendChild(tr);
     }
