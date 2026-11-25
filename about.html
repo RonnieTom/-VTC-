@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="關於巷口選物與營業資訊">
-  <title>巷口選物｜關於我們</title>
+  <meta name="description" content="關於青禾超市">
+  <title>青禾超市｜關於</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html">巷口選物<span>校園生活選物小店</span></a>
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">青</span>
+        <span class="brand-text">
+          <strong>青禾超市</strong>
+          <span>新鮮 · 日常 · 精選</span>
+        </span>
+      </a>
       <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
       <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
     </div>
@@ -19,9 +25,9 @@
   <nav class="site-nav" id="site-nav" aria-label="主要導覽">
     <div class="nav-inner">
       <a href="index.html">首頁</a>
-      <a href="products.html">商品一覽</a>
-      <a href="about.html" class="active">關於我們</a>
-      <a href="contact.html">聯絡／訂購</a>
+      <a href="products.html">商品</a>
+      <a href="about.html" class="active">關於</a>
+      <a href="contact.html">聯絡</a>
       <a href="cart.html">購物車</a>
     </div>
   </nav>
@@ -29,65 +35,55 @@
   <main>
     <div class="main-inner">
       <section class="panel">
-        <h1>關於巷口選物</h1>
-        <p>「巷口選物」是為 <strong>VIT2621</strong> 小型專題研習而設計的示範購物網站。我們希望以<strong>樸素、清楚</strong>的版面，展示網站的基本元素：導覽、內容區塊、表格、圖片與互動表單。</p>
-        <p>設計原則強調：文字可讀、按鈕用途明確、在不同螢幕寬度下仍能看到相近內容（RWD）。</p>
+        <div class="panel-title">
+          <h1>關於青禾</h1>
+        </div>
+        <p>青禾超市專注新鮮食材與家常雜貨。我們相信好食材不必複雜——清楚來源、實在價錢、準時送到，就夠了。</p>
+        <p>店內以蔬果、乳品、蛋類、烘焙與飲品為主，適合每週補貨，也適合臨時採買。</p>
       </section>
 
       <section class="grid-2">
         <article class="panel" style="margin:0;">
-          <h2>我們的目標</h2>
+          <h2>我們在意的事</h2>
           <ul>
-            <li>提供同學常用的文具與生活小物</li>
-            <li>用簡單流程完成選購與總額計算</li>
-            <li>示範跨裝置瀏覽的基本做法</li>
+            <li>優先採購當季、短途運送的蔬果</li>
+            <li>冷藏品全程控溫，到店即上架</li>
+            <li>標價透明，結帳一目了然</li>
           </ul>
-          <div class="highlight">
-            <p><em>理念：</em>少一點花巧裝飾，多一點清楚資訊。</p>
-          </div>
         </article>
         <figure class="panel figure" style="margin:0;">
-          <img src="images/store.svg" width="640" height="360" alt="實體取貨點示意圖">
-          <figcaption>圖：實體取貨點示意（本專題自製圖檔）</figcaption>
+          <img src="images/store.svg" width="640" height="360" alt="青禾超市門市">
+          <figcaption>青禾超市門市</figcaption>
         </figure>
       </section>
 
-      <section class="panel" style="margin-top:16px;">
-        <h2>服務時間與取貨資料</h2>
-        <p>以下表格整理本店服務時段與取貨方式，方便同學查閱。</p>
+      <section class="panel" style="margin-top:20px;">
+        <div class="panel-title">
+          <h2>營業資訊</h2>
+        </div>
         <table class="data">
           <thead>
             <tr>
               <th>項目</th>
               <th>內容</th>
-              <th>備註</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>營業日</td>
-              <td>星期一至星期五</td>
-              <td>公眾假期休息</td>
+              <td>營業時間</td>
+              <td>每日 08:00 – 22:00</td>
             </tr>
             <tr>
-              <td>服務時間</td>
-              <td>10:00 – 17:00</td>
-              <td>午膳 12:30 – 13:30 暫停取貨</td>
+              <td>配送</td>
+              <td>鄰里範圍；滿 HK$200 免運，否則 HK$20</td>
             </tr>
             <tr>
-              <td>取貨地點</td>
-              <td>校園服務台（示意）</td>
-              <td>下單後 1–2 個工作天可取</td>
-            </tr>
-            <tr>
-              <td>運費</td>
-              <td>未滿 HK$200 收 HK$20；滿額免運</td>
-              <td>只限校園範圍</td>
+              <td>取貨</td>
+              <td>亦可到門市自取</td>
             </tr>
             <tr>
               <td>付款</td>
-              <td>取貨時現金／轉數快（示意）</td>
-              <td>本示範網站不處理真實付款</td>
+              <td>現金、轉數快、信用卡</td>
             </tr>
           </tbody>
         </table>
@@ -95,18 +91,16 @@
 
       <section class="grid-2">
         <figure class="panel figure" style="margin:0;">
-          <img src="images/team.svg" width="640" height="360" alt="小組協作示意圖">
-          <figcaption>圖：小組協作示意（課程專題）</figcaption>
+          <img src="images/aisle.svg" width="640" height="360" alt="超市貨架">
+          <figcaption>店內貨架</figcaption>
         </figure>
         <article class="panel" style="margin:0;">
-          <h2>製作說明</h2>
-          <p>本站以最新的 <strong>HTML5</strong>、<strong>CSS3</strong> 與原生 <strong>JavaScript</strong> 完成，沒有使用 TypeScript 或前端框架。</p>
+          <h2>採購原則</h2>
           <ol>
-            <li>先規劃網站地圖與主要版面</li>
-            <li>再用 vibe coding 產生初稿</li>
-            <li>最後人手調整文字、表格與互動邏輯</li>
+            <li>蔬果以當日到貨為優先</li>
+            <li>乳品與蛋類每日檢查效期</li>
+            <li>減少不必要包裝，推廣自備購物袋</li>
           </ol>
-          <p class="small">評分相關重點：多頁結構、表格與文字、相片、CSS 外觀、格式化文字、合宜佈局、RWD、JS 輸入／選貨／數量與總額計算。</p>
         </article>
       </section>
     </div>
@@ -115,26 +109,26 @@
   <footer class="site-footer">
     <div class="footer-inner footer-grid">
       <div>
-        <h3>巷口選物</h3>
-        <p>校園生活選物小店｜純前端靜態網站示範</p>
+        <h3>青禾超市</h3>
+        <p>新鮮食材與日常雜貨，陪你把每一餐準備得更好。</p>
       </div>
       <div>
-        <h3>頁面</h3>
+        <h3>逛逛</h3>
         <ul>
           <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">商品一覽</a></li>
-          <li><a href="contact.html">聯絡／訂購</a></li>
+          <li><a href="products.html">商品</a></li>
+          <li><a href="contact.html">聯絡</a></li>
         </ul>
       </div>
       <div>
-        <h3>聯絡</h3>
+        <h3>服務</h3>
         <ul>
-          <li>電郵：shop@lanemart.example</li>
-          <li>服務時間：週一至五 10:00–17:00</li>
+          <li>週一至日 08:00–22:00</li>
+          <li>hello@qinghe-market.example</li>
         </ul>
       </div>
     </div>
-    <div class="footer-inner credits">VIT2621 Mini Project｜版面採低圓角、低對比裝飾的樸素風格</div>
+    <div class="footer-inner credits">© 青禾超市</div>
   </footer>
 
   <script src="js/main.js"></script>

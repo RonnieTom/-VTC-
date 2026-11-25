@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var CART_KEY = "laneMartCart";
+  var CART_KEY = "qingheMartCart";
 
   function ready(fn) {
     if (document.readyState !== "loading") {

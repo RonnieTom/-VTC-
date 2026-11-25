@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#eef6f0"/>
+  <rect x="90" y="110" width="220" height="90" rx="8" fill="#d4a373"/>
+  <rect x="100" y="120" width="200" height="70" fill="#e6c39a"/>
+  <path d="M110 140 H290 M110 155 H290 M110 170 H270" stroke="#c4894f" stroke-width="2"/>
+  <text x="24" y="276" font-family="sans-serif" font-size="16" fill="#5a6b62">全麥吐司</text>
+</svg>

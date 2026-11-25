@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
-  <rect width="400" height="300" fill="#e6e6e2"/>
-  <rect x="175" y="40" width="50" height="30" fill="#2b3036"/>
-  <rect x="160" y="70" width="80" height="170" fill="#8a9098" stroke="#2b3036" stroke-width="3"/>
-  <rect x="160" y="140" width="80" height="40" fill="#8b3a2b"/>
-  <text x="20" y="280" font-family="sans-serif" font-size="16" fill="#555">不鏽鋼水樽</text>
-</svg>

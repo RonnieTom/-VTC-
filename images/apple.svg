@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#eef6f0"/>
+  <circle cx="200" cy="165" r="78" fill="#d94a3d"/>
+  <circle cx="175" cy="140" r="18" fill="#f08a7a" opacity="0.5"/>
+  <rect x="195" y="70" width="10" height="30" rx="2" fill="#5c4033"/>
+  <ellipse cx="220" cy="85" rx="22" ry="12" fill="#40916c" transform="rotate(20 220 85)"/>
+  <text x="24" y="276" font-family="sans-serif" font-size="16" fill="#5a6b62">富士蘋果</text>
+</svg>

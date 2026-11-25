@@ -1,13 +1,10 @@
-/* 購物車清單、總額與結算回應 */
+/* 購物車清單與結算 */
 (function () {
   "use strict";
 
   function ready(fn) {
-    if (document.readyState !== "loading") {
-      fn();
-    } else {
-      document.addEventListener("DOMContentLoaded", fn);
-    }
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
   }
 
   function $(id) {
@@ -36,7 +33,7 @@
       if (empty) empty.hidden = false;
       if (tableWrap) tableWrap.hidden = true;
       if (summary) summary.innerHTML = "";
-      showMsg(msg, "warn", "購物車目前是空的，請先到「商品一覽」選購。");
+      if (msg) msg.hidden = true;
       return;
     }
 
@@ -53,21 +50,12 @@
 
       var tr = document.createElement("tr");
       tr.innerHTML =
-        "<td>" +
-        item.name +
-        "</td>" +
-        '<td class="num">' +
-        window.LaneMart.money(item.price) +
-        "</td>" +
-        '<td class="num">' +
-        qty +
-        "</td>" +
-        '<td class="num">' +
-        window.LaneMart.money(line) +
-        "</td>" +
-        "<td><button type=\"button\" class=\"btn btn-secondary\" data-remove=\"" +
-        item.id +
-        "\">移除</button></td>";
+        "<td>" + item.name + "</td>" +
+        '<td class="num">' + window.LaneMart.money(item.price) + "</td>" +
+        '<td class="num">' + qty + "</td>" +
+        '<td class="num">' + window.LaneMart.money(line) + "</td>" +
+        '<td><button type="button" class="btn btn-secondary" data-remove="' +
+        item.id + '">移除</button></td>';
       tbody.appendChild(tr);
     }
 
@@ -83,16 +71,11 @@
 
     if (summary) {
       summary.innerHTML =
-        "<p><strong>商品小計：</strong>" +
-        window.LaneMart.money(total) +
-        "</p>" +
+        "<p><strong>商品小計：</strong>" + window.LaneMart.money(total) + "</p>" +
         "<p><strong>運費：</strong>" +
-        (shipping === 0 ? "免運（滿 HK$200）" : window.LaneMart.money(shipping)) +
-        "</p>" +
+        (shipping === 0 ? "免運費" : window.LaneMart.money(shipping)) + "</p>" +
         '<p class="total"><strong>應付總額：</strong>' +
-        window.LaneMart.money(grand) +
-        "</p>" +
-        '<p class="small">滿 HK$200 免運；未滿則收取運費 HK$20。</p>';
+        window.LaneMart.money(grand) + "</p>";
     }
   }
 
@@ -102,7 +85,7 @@
     });
     window.LaneMart.writeCart(cart);
     renderCart();
-    showMsg($("cart-msg"), "ok", "已移除該商品。");
+    showMsg($("cart-msg"), "ok", "已移除商品。");
   }
 
   function clearCart() {
@@ -115,12 +98,12 @@
     var cart = window.LaneMart.readCart();
     var msg = $("cart-msg");
     if (!cart.length) {
-      showMsg(msg, "err", "沒有可結算的商品。");
+      showMsg(msg, "err", "購物車是空的。");
       return;
     }
 
     var total = 0;
-    var customer = cart[0].customer || "顧客";
+    var customer = "顧客";
     for (var i = 0; i < cart.length; i++) {
       total += (Number(cart[i].price) || 0) * (parseInt(cart[i].qty, 10) || 0);
       if (cart[i].customer) customer = cart[i].customer;
@@ -133,10 +116,7 @@
     showMsg(
       msg,
       "ok",
-      customer +
-        " 您好！訂單已送出，應付總額為 " +
-        window.LaneMart.money(grand) +
-        "。我們會以電郵／電話與您確認取貨安排，謝謝惠顧。"
+      customer + "，訂單已提交，應付 " + window.LaneMart.money(grand) + "。謝謝惠顧！"
     );
   }
 
@@ -144,14 +124,18 @@
     if (!$("cart-body")) return;
     var clearBtn = $("btn-clear");
     var checkoutBtn = $("btn-checkout");
-    if (clearBtn) clearBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      clearCart();
-    });
-    if (checkoutBtn) checkoutBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      checkout();
-    });
+    if (clearBtn) {
+      clearBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        clearCart();
+      });
+    }
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        checkout();
+      });
+    }
     renderCart();
   });
 })();

@@ -1,22 +1,19 @@
-/* 商品選擇、數量輸入與總額計算 */
+/* 商品選擇、數量與小計 */
 (function () {
   "use strict";
 
   var PRODUCTS = {
-    notebook: { id: "notebook", name: "精裝筆記本 A5", price: 28 },
-    pen: { id: "pen", name: "中性筆套裝 (3支)", price: 18 },
-    mug: { id: "mug", name: "陶瓷咖啡杯", price: 45 },
-    tote: { id: "tote", name: "帆布購物袋", price: 55 },
-    lamp: { id: "lamp", name: "護眼枱燈", price: 168 },
-    bottle: { id: "bottle", name: "不鏽鋼水樽 500ml", price: 79 }
+    apple: { id: "apple", name: "富士蘋果（約 600g）", price: 22 },
+    milk: { id: "milk", name: "全脂鮮奶 1L", price: 26 },
+    eggs: { id: "eggs", name: "新鮮雞蛋（6 隻）", price: 18 },
+    bread: { id: "bread", name: "全麥吐司", price: 24 },
+    spinach: { id: "spinach", name: "有機菠菜 250g", price: 16 },
+    juice: { id: "juice", name: "鮮搾橙汁 1L", price: 32 }
   };
 
   function ready(fn) {
-    if (document.readyState !== "loading") {
-      fn();
-    } else {
-      document.addEventListener("DOMContentLoaded", fn);
-    }
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
   }
 
   function $(id) {
@@ -43,10 +40,6 @@
     return q;
   }
 
-  function calcLine(product, qty) {
-    return product.price * qty;
-  }
-
   function refreshPreview() {
     var product = getSelectedProduct();
     var qty = getQty();
@@ -54,44 +47,32 @@
     var msg = $("order-msg");
 
     if (!product) {
-      showMsg(msg, "warn", "請先選擇一件商品。");
+      showMsg(msg, "warn", "請先選擇商品。");
       if (preview) preview.innerHTML = "";
       return;
     }
 
     if (qty === null || qty < 1) {
-      showMsg(msg, "err", "數量必須是 1 或以上的整數。");
+      showMsg(msg, "err", "數量須為 1 或以上。");
       if (preview) preview.innerHTML = "";
       return;
     }
 
     if (qty > 99) {
-      showMsg(msg, "warn", "單次最多可訂購 99 件，請調整數量。");
+      showMsg(msg, "warn", "單次最多 99 件。");
       if (preview) preview.innerHTML = "";
       return;
     }
 
-    var subtotal = calcLine(product, qty);
-    showMsg(
-      msg,
-      "ok",
-      "已計算：" + product.name + " × " + qty + " = " + window.LaneMart.money(subtotal)
-    );
+    var subtotal = product.price * qty;
+    showMsg(msg, "ok", product.name + " × " + qty + " = " + window.LaneMart.money(subtotal));
 
     if (preview) {
       preview.innerHTML =
-        "<p><strong>商品：</strong>" +
-        product.name +
-        "</p>" +
-        "<p><strong>單價：</strong>" +
-        window.LaneMart.money(product.price) +
-        "</p>" +
-        "<p><strong>數量：</strong>" +
-        qty +
-        "</p>" +
-        '<p class="total"><strong>小計：</strong>' +
-        window.LaneMart.money(subtotal) +
-        "</p>";
+        "<p><strong>商品：</strong>" + product.name + "</p>" +
+        "<p><strong>單價：</strong>" + window.LaneMart.money(product.price) + "</p>" +
+        "<p><strong>數量：</strong>" + qty + "</p>" +
+        '<p class="total"><strong>小計：</strong>' + window.LaneMart.money(subtotal) + "</p>";
     }
   }
 
@@ -103,18 +84,16 @@
     var name = nameInput ? nameInput.value.replace(/^\s+|\s+$/g, "") : "";
 
     if (!name) {
-      showMsg(msg, "err", "請輸入您的姓名，方便我們核對訂單。");
+      showMsg(msg, "err", "請輸入姓名。");
       if (nameInput) nameInput.focus();
       return;
     }
-
     if (!product) {
       showMsg(msg, "err", "請選擇商品。");
       return;
     }
-
     if (qty === null || qty < 1 || qty > 99) {
-      showMsg(msg, "err", "請輸入 1 至 99 之間的數量。");
+      showMsg(msg, "err", "請輸入 1 至 99 的數量。");
       return;
     }
 
@@ -142,18 +121,7 @@
 
     window.LaneMart.writeCart(cart);
     refreshPreview();
-    showMsg(
-      msg,
-      "ok",
-      name +
-        " 您好！已將「" +
-        product.name +
-        "」× " +
-        qty +
-        " 加入購物車。目前購物車共 " +
-        window.LaneMart.cartCount() +
-        " 件。"
-    );
+    showMsg(msg, "ok", "已加入購物車（目前 " + window.LaneMart.cartCount() + " 件）。");
   }
 
   function bindQuickAdd() {
@@ -163,12 +131,8 @@
         var id = ev.currentTarget.getAttribute("data-add-id");
         var sel = $("product-select");
         var qty = $("product-qty");
-        if (sel && PRODUCTS[id]) {
-          sel.value = id;
-        }
-        if (qty && (!qty.value || parseInt(qty.value, 10) < 1)) {
-          qty.value = "1";
-        }
+        if (sel && PRODUCTS[id]) sel.value = id;
+        if (qty && (!qty.value || parseInt(qty.value, 10) < 1)) qty.value = "1";
         refreshPreview();
         var form = $("order-form");
         if (form && form.scrollIntoView) {
@@ -187,9 +151,7 @@
     function bump(delta) {
       var q = parseInt(input.value, 10);
       if (isNaN(q)) q = 1;
-      q = q + delta;
-      if (q < 1) q = 1;
-      if (q > 99) q = 99;
+      q = Math.max(1, Math.min(99, q + delta));
       input.value = String(q);
       refreshPreview();
     }
@@ -211,14 +173,18 @@
       qty.addEventListener("input", refreshPreview);
       qty.addEventListener("change", refreshPreview);
     }
-    if (calcBtn) calcBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      refreshPreview();
-    });
-    if (addBtn) addBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      addToCart();
-    });
+    if (calcBtn) {
+      calcBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        refreshPreview();
+      });
+    }
+    if (addBtn) {
+      addBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        addToCart();
+      });
+    }
 
     bindQuickAdd();
     bindQtyButtons();
