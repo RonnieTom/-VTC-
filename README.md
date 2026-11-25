@@ -5,7 +5,8 @@
 ## 頁面
 
 - `index.html` — 首頁
-- `products.html` — 商品與選購
+- `products.html` — 商品列表
+- `product.html?id=...` — 商品詳情（左圖／右資訊，預留 3D）
 - `about.html` — 關於
 - `contact.html` — 聯絡
 - `cart.html` — 購物車

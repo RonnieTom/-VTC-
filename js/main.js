@@ -43,8 +43,10 @@
   function setActiveNav() {
     var path = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
     if (!path) path = "index.html";
+    if (path === "product.html") path = "products.html";
     var links = document.querySelectorAll(".nav-inner a");
     for (var i = 0; i < links.length; i++) {
+      links[i].className = links[i].className.replace(/\bactive\b/g, "").replace(/\s+/g, " ").trim();
       var href = (links[i].getAttribute("href") || "").toLowerCase();
       if (href === path || (path === "" && href === "index.html")) {
         links[i].className = (links[i].className + " active").trim();
@@ -57,9 +59,25 @@
     var nav = document.getElementById("site-nav");
     if (!btn || !nav) return;
 
-    // 手機預設收合
-    if (window.matchMedia && window.matchMedia("(max-width: 640px)").matches) {
-      nav.className += " is-collapsed";
+    var mq = window.matchMedia ? window.matchMedia("(max-width: 640px)") : null;
+
+    function syncCollapsed() {
+      var mobile = mq ? mq.matches : false;
+      if (mobile) {
+        if (nav.className.indexOf("is-collapsed") < 0) {
+          nav.className = (nav.className + " is-collapsed").trim();
+        }
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        nav.className = nav.className.replace(/\bis-collapsed\b/g, "").trim();
+        btn.setAttribute("aria-expanded", "true");
+      }
+    }
+
+    syncCollapsed();
+    if (mq) {
+      if (mq.addEventListener) mq.addEventListener("change", syncCollapsed);
+      else if (mq.addListener) mq.addListener(syncCollapsed);
     }
 
     btn.addEventListener("click", function () {

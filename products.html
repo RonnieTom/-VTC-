@@ -40,103 +40,72 @@
         </div>
         <div class="grid-3">
           <article class="product-card">
-            <div class="thumb"><img src="images/apple.svg" width="400" height="300" alt="富士蘋果"></div>
+            <a class="card-link" href="product.html?id=apple">
+              <div class="thumb"><img src="images/apple.svg" width="400" height="300" alt="富士蘋果"></div>
+            </a>
             <div class="body">
               <h2>富士蘋果（約 600g）</h2>
               <p class="small">產地直送，口感脆甜。</p>
               <p class="price">HK$ 22.00</p>
-              <div class="actions"><button type="button" class="btn btn-block" data-add-id="apple">選此商品</button></div>
+              <div class="actions"><a class="btn btn-block" href="product.html?id=apple">選此商品</a></div>
             </div>
           </article>
           <article class="product-card">
-            <div class="thumb"><img src="images/milk.svg" width="400" height="300" alt="全脂鮮奶"></div>
+            <a class="card-link" href="product.html?id=milk">
+              <div class="thumb"><img src="images/milk.svg" width="400" height="300" alt="全脂鮮奶"></div>
+            </a>
             <div class="body">
               <h2>全脂鮮奶 1L</h2>
               <p class="small">當日冷藏到店。</p>
               <p class="price">HK$ 26.00</p>
-              <div class="actions"><button type="button" class="btn btn-block" data-add-id="milk">選此商品</button></div>
+              <div class="actions"><a class="btn btn-block" href="product.html?id=milk">選此商品</a></div>
             </div>
           </article>
           <article class="product-card">
-            <div class="thumb"><img src="images/eggs.svg" width="400" height="300" alt="新鮮雞蛋"></div>
+            <a class="card-link" href="product.html?id=eggs">
+              <div class="thumb"><img src="images/eggs.svg" width="400" height="300" alt="新鮮雞蛋"></div>
+            </a>
             <div class="body">
               <h2>新鮮雞蛋（6 隻）</h2>
               <p class="small">蛋黃飽滿，適合家常料理。</p>
               <p class="price">HK$ 18.00</p>
-              <div class="actions"><button type="button" class="btn btn-block" data-add-id="eggs">選此商品</button></div>
+              <div class="actions"><a class="btn btn-block" href="product.html?id=eggs">選此商品</a></div>
             </div>
           </article>
           <article class="product-card">
-            <div class="thumb"><img src="images/bread.svg" width="400" height="300" alt="全麥吐司"></div>
+            <a class="card-link" href="product.html?id=bread">
+              <div class="thumb"><img src="images/bread.svg" width="400" height="300" alt="全麥吐司"></div>
+            </a>
             <div class="body">
               <h2>全麥吐司</h2>
               <p class="small">烘焙當日，口感扎實。</p>
               <p class="price">HK$ 24.00</p>
-              <div class="actions"><button type="button" class="btn btn-block" data-add-id="bread">選此商品</button></div>
+              <div class="actions"><a class="btn btn-block" href="product.html?id=bread">選此商品</a></div>
             </div>
           </article>
           <article class="product-card">
-            <div class="thumb"><img src="images/spinach.svg" width="400" height="300" alt="有機菠菜"></div>
+            <a class="card-link" href="product.html?id=spinach">
+              <div class="thumb"><img src="images/spinach.svg" width="400" height="300" alt="有機菠菜"></div>
+            </a>
             <div class="body">
               <h2>有機菠菜 250g</h2>
               <p class="small">無農藥種植，洗淨即可烹調。</p>
               <p class="price">HK$ 16.00</p>
-              <div class="actions"><button type="button" class="btn btn-block" data-add-id="spinach">選此商品</button></div>
+              <div class="actions"><a class="btn btn-block" href="product.html?id=spinach">選此商品</a></div>
             </div>
           </article>
           <article class="product-card">
-            <div class="thumb"><img src="images/juice.svg" width="400" height="300" alt="鮮搾橙汁"></div>
+            <a class="card-link" href="product.html?id=juice">
+              <div class="thumb"><img src="images/juice.svg" width="400" height="300" alt="鮮搾橙汁"></div>
+            </a>
             <div class="body">
               <h2>鮮搾橙汁 1L</h2>
               <p class="small">無添加糖，冰鎮更佳。</p>
               <p class="price">HK$ 32.00</p>
-              <div class="actions"><button type="button" class="btn btn-block" data-add-id="juice">選此商品</button></div>
+              <div class="actions"><a class="btn btn-block" href="product.html?id=juice">選此商品</a></div>
             </div>
           </article>
         </div>
-      </section>
-
-      <section class="panel" id="order-form">
-        <div class="panel-title">
-          <h2>加入購物車</h2>
-        </div>
-
-        <div class="form-row">
-          <label for="customer-name">姓名</label>
-          <input type="text" id="customer-name" name="customer-name" maxlength="40" placeholder="您的姓名" autocomplete="name">
-        </div>
-
-        <div class="form-inline">
-          <div class="form-row">
-            <label for="product-select">商品</label>
-            <select id="product-select" name="product">
-              <option value="">請選擇</option>
-              <option value="apple">富士蘋果（HK$22）</option>
-              <option value="milk">全脂鮮奶（HK$26）</option>
-              <option value="eggs">新鮮雞蛋（HK$18）</option>
-              <option value="bread">全麥吐司（HK$24）</option>
-              <option value="spinach">有機菠菜（HK$16）</option>
-              <option value="juice">鮮搾橙汁（HK$32）</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="product-qty">數量</label>
-            <div class="qty-control">
-              <button type="button" id="qty-minus" aria-label="減少">−</button>
-              <input type="number" id="product-qty" name="qty" min="1" max="99" value="1" inputmode="numeric">
-              <button type="button" id="qty-plus" aria-label="增加">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="button" class="btn" id="btn-calc">計算小計</button>
-          <button type="button" class="btn btn-accent" id="btn-add">加入購物車</button>
-          <a class="btn btn-secondary" href="cart.html">查看購物車</a>
-        </div>
-
-        <div id="order-msg" class="msg" hidden></div>
-        <div class="summary-box" id="order-preview" aria-live="polite"></div>
       </section>
 
       <section class="panel">
@@ -153,12 +122,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>A01</td><td>富士蘋果（約 600g）</td><td>蔬果</td><td class="num">22.00</td></tr>
-            <tr><td>M02</td><td>全脂鮮奶 1L</td><td>乳品</td><td class="num">26.00</td></tr>
-            <tr><td>E03</td><td>新鮮雞蛋（6 隻）</td><td>蛋品</td><td class="num">18.00</td></tr>
-            <tr><td>B04</td><td>全麥吐司</td><td>烘焙</td><td class="num">24.00</td></tr>
-            <tr><td>S05</td><td>有機菠菜 250g</td><td>蔬果</td><td class="num">16.00</td></tr>
-            <tr><td>J06</td><td>鮮搾橙汁 1L</td><td>飲品</td><td class="num">32.00</td></tr>
+            <tr><td>A01</td><td><a href="product.html?id=apple">富士蘋果（約 600g）</a></td><td>蔬果</td><td class="num">22.00</td></tr>
+            <tr><td>M02</td><td><a href="product.html?id=milk">全脂鮮奶 1L</a></td><td>乳品</td><td class="num">26.00</td></tr>
+            <tr><td>E03</td><td><a href="product.html?id=eggs">新鮮雞蛋（6 隻）</a></td><td>蛋品</td><td class="num">18.00</td></tr>
+            <tr><td>B04</td><td><a href="product.html?id=bread">全麥吐司</a></td><td>烘焙</td><td class="num">24.00</td></tr>
+            <tr><td>S05</td><td><a href="product.html?id=spinach">有機菠菜 250g</a></td><td>蔬果</td><td class="num">16.00</td></tr>
+            <tr><td>J06</td><td><a href="product.html?id=juice">鮮搾橙汁 1L</a></td><td>飲品</td><td class="num">32.00</td></tr>
           </tbody>
         </table>
       </section>
@@ -191,6 +160,5 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/shop.js"></script>
 </body>
 </html>

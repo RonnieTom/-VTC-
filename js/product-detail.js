@@ -1,15 +1,6 @@
-/* 商品選擇、數量與小計 */
+/* 商品詳情頁：左圖（預留 3D）／右資訊與選購 */
 (function () {
   "use strict";
-
-  var PRODUCTS = {
-    apple: { id: "apple", name: "富士蘋果（約 600g）", price: 22 },
-    milk: { id: "milk", name: "全脂鮮奶 1L", price: 26 },
-    eggs: { id: "eggs", name: "新鮮雞蛋（6 隻）", price: 18 },
-    bread: { id: "bread", name: "全麥吐司", price: 24 },
-    spinach: { id: "spinach", name: "有機菠菜 250g", price: 16 },
-    juice: { id: "juice", name: "鮮搾橙汁 1L", price: 32 }
-  };
 
   function ready(fn) {
     if (document.readyState !== "loading") fn();
@@ -20,17 +11,17 @@
     return document.getElementById(id);
   }
 
+  function queryId() {
+    var q = window.location.search || "";
+    var m = q.match(/[?&]id=([^&]+)/);
+    return m ? decodeURIComponent(m[1]) : "";
+  }
+
   function showMsg(box, type, text) {
     if (!box) return;
     box.className = "msg " + type;
     box.textContent = text;
     box.hidden = false;
-  }
-
-  function getSelectedProduct() {
-    var sel = $("product-select");
-    if (!sel) return null;
-    return PRODUCTS[sel.value] || null;
   }
 
   function getQty() {
@@ -40,24 +31,64 @@
     return q;
   }
 
-  function refreshPreview() {
-    var product = getSelectedProduct();
+  function money(n) {
+    return window.LaneMart.money(n);
+  }
+
+  function renderDetail(product) {
+    document.title = "青禾超市｜" + product.name;
+
+    var nameEl = $("pd-name");
+    var catEl = $("pd-category");
+    var priceEl = $("pd-price");
+    var unitEl = $("pd-unit");
+    var descEl = $("pd-desc");
+    var pointsEl = $("pd-points");
+    var imgEl = $("pd-image");
+    var stage = $("product-media-stage");
+
+    if (nameEl) nameEl.textContent = product.name;
+    if (catEl) catEl.textContent = product.category;
+    if (priceEl) priceEl.textContent = money(product.price);
+    if (unitEl) unitEl.textContent = product.unit || "";
+    if (descEl) descEl.textContent = product.desc || "";
+
+    if (pointsEl) {
+      pointsEl.innerHTML = "";
+      var pts = product.points || [];
+      for (var i = 0; i < pts.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = pts[i];
+        pointsEl.appendChild(li);
+      }
+    }
+
+    if (imgEl) {
+      imgEl.src = product.image;
+      imgEl.alt = product.name;
+    }
+
+    // 預留 3D：之後可在 stage 內掛載模型，並切換 data-view
+    if (stage) {
+      stage.setAttribute("data-product-id", product.id);
+      stage.setAttribute("data-view", "image");
+      stage.setAttribute("data-model", "");
+    }
+
+    var crumb = $("pd-crumb");
+    if (crumb) crumb.textContent = product.name;
+  }
+
+  function refreshSubtotal(product) {
     var qty = getQty();
     var preview = $("order-preview");
     var msg = $("order-msg");
-
-    if (!product) {
-      showMsg(msg, "warn", "請先選擇商品。");
-      if (preview) preview.innerHTML = "";
-      return;
-    }
 
     if (qty === null || qty < 1) {
       showMsg(msg, "err", "數量須為 1 或以上。");
       if (preview) preview.innerHTML = "";
       return;
     }
-
     if (qty > 99) {
       showMsg(msg, "warn", "單次最多 99 件。");
       if (preview) preview.innerHTML = "";
@@ -65,19 +96,15 @@
     }
 
     var subtotal = product.price * qty;
-    showMsg(msg, "ok", product.name + " × " + qty + " = " + window.LaneMart.money(subtotal));
-
+    if (msg) msg.hidden = true;
     if (preview) {
       preview.innerHTML =
-        "<p><strong>商品：</strong>" + product.name + "</p>" +
-        "<p><strong>單價：</strong>" + window.LaneMart.money(product.price) + "</p>" +
         "<p><strong>數量：</strong>" + qty + "</p>" +
-        '<p class="total"><strong>小計：</strong>' + window.LaneMart.money(subtotal) + "</p>";
+        '<p class="total"><strong>小計：</strong>' + money(subtotal) + "</p>";
     }
   }
 
-  function addToCart() {
-    var product = getSelectedProduct();
+  function addToCart(product) {
     var qty = getQty();
     var msg = $("order-msg");
     var nameInput = $("customer-name");
@@ -86,10 +113,6 @@
     if (!name) {
       showMsg(msg, "err", "請輸入姓名。");
       if (nameInput) nameInput.focus();
-      return;
-    }
-    if (!product) {
-      showMsg(msg, "err", "請選擇商品。");
       return;
     }
     if (qty === null || qty < 1 || qty > 99) {
@@ -120,76 +143,63 @@
     }
 
     window.LaneMart.writeCart(cart);
-    refreshPreview();
+    refreshSubtotal(product);
     showMsg(msg, "ok", "已加入購物車（目前 " + window.LaneMart.cartCount() + " 件）。");
   }
 
-  function bindQuickAdd() {
-    var buttons = document.querySelectorAll("[data-add-id]");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", function (ev) {
-        var id = ev.currentTarget.getAttribute("data-add-id");
-        var sel = $("product-select");
-        var qty = $("product-qty");
-        if (sel && PRODUCTS[id]) sel.value = id;
-        if (qty && (!qty.value || parseInt(qty.value, 10) < 1)) qty.value = "1";
-        refreshPreview();
-        var form = $("order-form");
-        if (form && form.scrollIntoView) {
-          form.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-    }
+  function showMissing() {
+    var layout = $("product-detail");
+    var missing = $("product-missing");
+    if (layout) layout.hidden = true;
+    if (missing) missing.hidden = false;
   }
 
-  function bindQtyButtons() {
+  ready(function () {
+    if (!$("product-detail")) return;
+
+    var id = queryId();
+    var catalog = window.LaneMartCatalog || {};
+    var product = catalog[id];
+
+    if (!product) {
+      showMissing();
+      return;
+    }
+
+    renderDetail(product);
+    refreshSubtotal(product);
+
+    var qty = $("product-qty");
     var minus = $("qty-minus");
     var plus = $("qty-plus");
-    var input = $("product-qty");
-    if (!input) return;
+    var calcBtn = $("btn-calc");
+    var addBtn = $("btn-add");
 
     function bump(delta) {
-      var q = parseInt(input.value, 10);
+      var q = parseInt(qty.value, 10);
       if (isNaN(q)) q = 1;
       q = Math.max(1, Math.min(99, q + delta));
-      input.value = String(q);
-      refreshPreview();
+      qty.value = String(q);
+      refreshSubtotal(product);
     }
 
     if (minus) minus.addEventListener("click", function () { bump(-1); });
     if (plus) plus.addEventListener("click", function () { bump(1); });
-  }
-
-  ready(function () {
-    if (!$("order-form")) return;
-
-    var sel = $("product-select");
-    var qty = $("product-qty");
-    var calcBtn = $("btn-calc");
-    var addBtn = $("btn-add");
-
-    if (sel) sel.addEventListener("change", refreshPreview);
     if (qty) {
-      qty.addEventListener("input", refreshPreview);
-      qty.addEventListener("change", refreshPreview);
+      qty.addEventListener("input", function () { refreshSubtotal(product); });
+      qty.addEventListener("change", function () { refreshSubtotal(product); });
     }
     if (calcBtn) {
       calcBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        refreshPreview();
+        refreshSubtotal(product);
       });
     }
     if (addBtn) {
       addBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        addToCart();
+        addToCart(product);
       });
     }
-
-    bindQuickAdd();
-    bindQtyButtons();
-    refreshPreview();
   });
-
-  window.LaneMartProducts = PRODUCTS;
 })();
