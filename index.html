@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="巷口選物 — VTC 小型專題研習購物網站">
+  <title>巷口選物｜首頁</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">巷口選物<span>校園生活選物小店</span></a>
+      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+    <div class="nav-inner">
+      <a href="index.html" class="active">首頁</a>
+      <a href="products.html">商品一覽</a>
+      <a href="about.html">關於我們</a>
+      <a href="contact.html">聯絡／訂購</a>
+      <a href="cart.html">購物車</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-inner">
+      <section class="hero" aria-label="主題介紹">
+        <div class="hero-copy">
+          <h1>巷口選物</h1>
+          <p>為同學準備文具、飲品杯具與日常小物。網站採用純 HTML、CSS 與 JavaScript 製作，並以 RWD 適配電腦、平板與手機。</p>
+          <p>
+            <a class="btn" href="products.html">立即選購</a>
+            <a class="btn btn-secondary" href="about.html">了解本店</a>
+          </p>
+        </div>
+        <div>
+          <div class="hero-media">
+            <img src="images/hero.svg" width="800" height="480" alt="巷口選物店面陳列示意圖">
+          </div>
+          <p class="small" style="margin-top:6px;border-left:3px solid var(--accent);padding-left:8px;">圖：店面陳列示意（本專題自製圖檔）</p>
+        </div>
+      </section>
+
+      <section class="feature-list" aria-label="服務重點">
+        <article class="feature-item">
+          <h2 style="border:0;padding:0;font-size:1.1rem;">校園取貨</h2>
+          <p class="small">平日於指定服務台取貨，減少運費開支。</p>
+        </article>
+        <article class="feature-item">
+          <h2 style="border:0;padding:0;font-size:1.1rem;">透明價錢</h2>
+          <p class="small">所有商品標示港幣售價，結算時即時計算總額。</p>
+        </article>
+        <article class="feature-item">
+          <h2 style="border:0;padding:0;font-size:1.1rem;">簡易下單</h2>
+          <p class="small">選擇商品與數量後即可加入購物車。</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>本週推介</h2>
+        <p>以下三款為常備熱門商品，完整清單請到 <a href="products.html">商品一覽</a>。</p>
+        <div class="grid-3">
+          <article class="product-card">
+            <div class="thumb"><img src="images/notebook.svg" width="400" height="300" alt="精裝筆記本"></div>
+            <div class="body">
+              <h3>精裝筆記本 A5</h3>
+              <p class="small">100 頁橫線內頁，適合課堂筆記。</p>
+              <p class="price">HK$ 28.00</p>
+              <div class="actions"><a class="btn btn-block" href="products.html">選購</a></div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="thumb"><img src="images/mug.svg" width="400" height="300" alt="陶瓷咖啡杯"></div>
+            <div class="body">
+              <h3>陶瓷咖啡杯</h3>
+              <p class="small">容量約 300ml，耐熱陶瓷。</p>
+              <p class="price">HK$ 45.00</p>
+              <div class="actions"><a class="btn btn-block" href="products.html">選購</a></div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="thumb"><img src="images/bottle.svg" width="400" height="300" alt="不鏽鋼水樽"></div>
+            <div class="body">
+              <h3>不鏽鋼水樽 500ml</h3>
+              <p class="small">輕量瓶身，適合日常攜帶。</p>
+              <p class="price">HK$ 79.00</p>
+              <div class="actions"><a class="btn btn-block" href="products.html">選購</a></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>網站說明</h2>
+        <p>本網站為 <strong>VIT2621 Vibe Coding &amp; Web Authoring</strong> 小型專題研習作品。內容涵蓋首頁、商品、關於、聯絡與購物車共五個頁面，示範表格、圖片、CSS 排版與 JavaScript 互動計算。</p>
+        <div class="highlight">
+          <p><em>溫馨提示：</em>滿 <strong>HK$200</strong> 可享校園配送免運；未滿則收取運費 HK$20。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner footer-grid">
+      <div>
+        <h3>巷口選物</h3>
+        <p>校園生活選物小店｜純前端靜態網站示範</p>
+      </div>
+      <div>
+        <h3>頁面</h3>
+        <ul>
+          <li><a href="products.html">商品一覽</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡／訂購</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>電郵：shop@lanemart.example</li>
+          <li>服務時間：週一至五 10:00–17:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inner credits">VIT2621 Mini Project｜AI 協作產生網頁骨架後由組員調整內容與樣式</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

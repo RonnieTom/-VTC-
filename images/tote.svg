@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e6e6e2"/>
+  <rect x="120" y="100" width="160" height="140" fill="#cfc8b8" stroke="#2b3036" stroke-width="3"/>
+  <path d="M150 100 V70 H180 V100" fill="none" stroke="#2b3036" stroke-width="6"/>
+  <path d="M220 100 V70 H250 V100" fill="none" stroke="#2b3036" stroke-width="6"/>
+  <text x="145" y="180" font-family="sans-serif" font-size="18" fill="#8b3a2b">巷口</text>
+  <text x="20" y="280" font-family="sans-serif" font-size="16" fill="#555">帆布購物袋</text>
+</svg>

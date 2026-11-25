@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="巷口選物購物車與總額結算">
+  <title>巷口選物｜購物車</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">巷口選物<span>校園生活選物小店</span></a>
+      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+    <div class="nav-inner">
+      <a href="index.html">首頁</a>
+      <a href="products.html">商品一覽</a>
+      <a href="about.html">關於我們</a>
+      <a href="contact.html">聯絡／訂購</a>
+      <a href="cart.html" class="active">購物車</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-inner">
+      <section class="panel">
+        <h1>購物車</h1>
+        <p>此頁會讀取您在「商品一覽」加入的貨物，並以 JavaScript <strong>計算總額</strong>、運費與結算回應。資料暫存在瀏覽器 localStorage，重新整理後仍會保留。</p>
+        <div id="cart-msg" class="msg" hidden></div>
+        <p id="cart-empty" class="small" hidden>購物車是空的。<a href="products.html">前往選購</a></p>
+      </section>
+
+      <section class="panel" id="cart-table-wrap" hidden>
+        <h2>已選商品</h2>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th>單價</th>
+              <th>數量</th>
+              <th>小計</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="cart-body"></tbody>
+        </table>
+
+        <div class="summary-box" id="cart-summary" aria-live="polite"></div>
+
+        <p style="margin-top:14px;">
+          <button type="button" class="btn" id="btn-checkout">確認結算</button>
+          <button type="button" class="btn btn-secondary" id="btn-clear">清空購物車</button>
+          <a class="btn btn-secondary" href="products.html">繼續選購</a>
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>運費說明</h2>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>條件</th>
+              <th>運費</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>商品小計 &lt; HK$200</td>
+              <td class="num">HK$ 20.00</td>
+            </tr>
+            <tr>
+              <td>商品小計 ≥ HK$200</td>
+              <td class="num">免運</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="small">結算僅作課程示範，不會產生真實交易。</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner footer-grid">
+      <div>
+        <h3>巷口選物</h3>
+        <p>校園生活選物小店｜純前端靜態網站示範</p>
+      </div>
+      <div>
+        <h3>頁面</h3>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">商品一覽</a></li>
+          <li><a href="contact.html">聯絡／訂購</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>電郵：shop@lanemart.example</li>
+          <li>服務時間：週一至五 10:00–17:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inner credits">VIT2621 Mini Project｜購物車總額由 JavaScript 即時計算</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

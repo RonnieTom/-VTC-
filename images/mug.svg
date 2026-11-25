@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e6e6e2"/>
+  <rect x="130" y="70" width="140" height="150" fill="#f2f2f0" stroke="#2b3036" stroke-width="4"/>
+  <path d="M270 100 h40 a30 30 0 0 1 0 90 h-40" fill="none" stroke="#2b3036" stroke-width="8"/>
+  <rect x="145" y="100" width="110" height="40" fill="#8b3a2b"/>
+  <text x="20" y="280" font-family="sans-serif" font-size="16" fill="#555">陶瓷咖啡杯</text>
+</svg>

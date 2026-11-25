@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="聯絡巷口選物與查詢表單">
+  <title>巷口選物｜聯絡／訂購</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">巷口選物<span>校園生活選物小店</span></a>
+      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+    <div class="nav-inner">
+      <a href="index.html">首頁</a>
+      <a href="products.html">商品一覽</a>
+      <a href="about.html">關於我們</a>
+      <a href="contact.html" class="active">聯絡／訂購</a>
+      <a href="cart.html">購物車</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-inner">
+      <section class="panel">
+        <h1>聯絡／訂購查詢</h1>
+        <p>如需查詢貨況、更改取貨時間，或對網站有任何意見，請填寫以下表格。正式選購請到 <a href="products.html">商品一覽</a> 使用購物功能。</p>
+      </section>
+
+      <section class="grid-2">
+        <article class="panel" style="margin:0;">
+          <h2>查詢表單</h2>
+          <form id="contact-form" action="#" method="get" novalidate>
+            <div class="form-row">
+              <label for="c-name">姓名</label>
+              <input type="text" id="c-name" name="name" required maxlength="40" placeholder="請輸入姓名">
+            </div>
+            <div class="form-row">
+              <label for="c-email">電郵</label>
+              <input type="email" id="c-email" name="email" required placeholder="name@example.com">
+            </div>
+            <div class="form-row">
+              <label for="c-topic">主題</label>
+              <select id="c-topic" name="topic">
+                <option value="order">訂單查詢</option>
+                <option value="product">商品問題</option>
+                <option value="pickup">取貨安排</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="c-message">訊息內容</label>
+              <textarea id="c-message" name="message" required maxlength="500" placeholder="請簡述您的問題（最多 500 字）"></textarea>
+            </div>
+            <p>
+              <button type="submit" class="btn">送出查詢</button>
+              <button type="reset" class="btn btn-secondary">清空</button>
+            </p>
+            <div id="contact-msg" class="msg" hidden></div>
+          </form>
+        </article>
+
+        <aside class="panel" style="margin:0;">
+          <h2>其他聯絡方式</h2>
+          <table class="data">
+            <thead>
+              <tr>
+                <th>方式</th>
+                <th>資料</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>電郵</td>
+                <td>shop@lanemart.example</td>
+              </tr>
+              <tr>
+                <td>電話（示意）</td>
+                <td>1234 5678</td>
+              </tr>
+              <tr>
+                <td>服務時間</td>
+                <td>週一至五 10:00–17:00</td>
+              </tr>
+              <tr>
+                <td>取貨點</td>
+                <td>校園服務台（示意）</td>
+              </tr>
+            </tbody>
+          </table>
+          <figure class="figure">
+            <img src="images/store.svg" width="640" height="360" alt="取貨點位置示意">
+            <figcaption>圖：取貨點位置示意，實際地點以校內公布為準。</figcaption>
+          </figure>
+          <div class="highlight">
+            <p><strong>注意：</strong>此為課程示範網站，表單不會真正寄出郵件，只會在頁面顯示確認訊息。</p>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner footer-grid">
+      <div>
+        <h3>巷口選物</h3>
+        <p>校園生活選物小店｜純前端靜態網站示範</p>
+      </div>
+      <div>
+        <h3>頁面</h3>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">商品一覽</a></li>
+          <li><a href="about.html">關於我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>電郵：shop@lanemart.example</li>
+          <li>服務時間：週一至五 10:00–17:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inner credits">VIT2621 Mini Project｜聯絡表單以 JavaScript 驗證輸入</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("contact-form");
+      var msg = document.getElementById("contact-msg");
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = document.getElementById("c-name").value.replace(/^\s+|\s+$/g, "");
+        var email = document.getElementById("c-email").value.replace(/^\s+|\s+$/g, "");
+        var message = document.getElementById("c-message").value.replace(/^\s+|\s+$/g, "");
+        var topic = document.getElementById("c-topic").value;
+
+        if (!name || !email || !message) {
+          msg.className = "msg err";
+          msg.textContent = "請完整填寫姓名、電郵與訊息內容。";
+          msg.hidden = false;
+          return;
+        }
+
+        if (email.indexOf("@") < 1) {
+          msg.className = "msg err";
+          msg.textContent = "電郵格式看起來不正確，請再檢查。";
+          msg.hidden = false;
+          return;
+        }
+
+        var topicLabel = {
+          order: "訂單查詢",
+          product: "商品問題",
+          pickup: "取貨安排",
+          other: "其他"
+        };
+
+        msg.className = "msg ok";
+        msg.textContent =
+          name + " 您好！已收到您的「" + (topicLabel[topic] || topic) +
+          "」查詢。我們會在服務時間內回覆 " + email + "。（示範訊息）";
+        msg.hidden = false;
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>

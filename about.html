@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="關於巷口選物與營業資訊">
+  <title>巷口選物｜關於我們</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">巷口選物<span>校園生活選物小店</span></a>
+      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+    <div class="nav-inner">
+      <a href="index.html">首頁</a>
+      <a href="products.html">商品一覽</a>
+      <a href="about.html" class="active">關於我們</a>
+      <a href="contact.html">聯絡／訂購</a>
+      <a href="cart.html">購物車</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-inner">
+      <section class="panel">
+        <h1>關於巷口選物</h1>
+        <p>「巷口選物」是為 <strong>VIT2621</strong> 小型專題研習而設計的示範購物網站。我們希望以<strong>樸素、清楚</strong>的版面，展示網站的基本元素：導覽、內容區塊、表格、圖片與互動表單。</p>
+        <p>設計原則強調：文字可讀、按鈕用途明確、在不同螢幕寬度下仍能看到相近內容（RWD）。</p>
+      </section>
+
+      <section class="grid-2">
+        <article class="panel" style="margin:0;">
+          <h2>我們的目標</h2>
+          <ul>
+            <li>提供同學常用的文具與生活小物</li>
+            <li>用簡單流程完成選購與總額計算</li>
+            <li>示範跨裝置瀏覽的基本做法</li>
+          </ul>
+          <div class="highlight">
+            <p><em>理念：</em>少一點花巧裝飾，多一點清楚資訊。</p>
+          </div>
+        </article>
+        <figure class="panel figure" style="margin:0;">
+          <img src="images/store.svg" width="640" height="360" alt="實體取貨點示意圖">
+          <figcaption>圖：實體取貨點示意（本專題自製圖檔）</figcaption>
+        </figure>
+      </section>
+
+      <section class="panel" style="margin-top:16px;">
+        <h2>服務時間與取貨資料</h2>
+        <p>以下表格整理本店服務時段與取貨方式，方便同學查閱。</p>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>內容</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>營業日</td>
+              <td>星期一至星期五</td>
+              <td>公眾假期休息</td>
+            </tr>
+            <tr>
+              <td>服務時間</td>
+              <td>10:00 – 17:00</td>
+              <td>午膳 12:30 – 13:30 暫停取貨</td>
+            </tr>
+            <tr>
+              <td>取貨地點</td>
+              <td>校園服務台（示意）</td>
+              <td>下單後 1–2 個工作天可取</td>
+            </tr>
+            <tr>
+              <td>運費</td>
+              <td>未滿 HK$200 收 HK$20；滿額免運</td>
+              <td>只限校園範圍</td>
+            </tr>
+            <tr>
+              <td>付款</td>
+              <td>取貨時現金／轉數快（示意）</td>
+              <td>本示範網站不處理真實付款</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="grid-2">
+        <figure class="panel figure" style="margin:0;">
+          <img src="images/team.svg" width="640" height="360" alt="小組協作示意圖">
+          <figcaption>圖：小組協作示意（課程專題）</figcaption>
+        </figure>
+        <article class="panel" style="margin:0;">
+          <h2>製作說明</h2>
+          <p>本站以最新的 <strong>HTML5</strong>、<strong>CSS3</strong> 與原生 <strong>JavaScript</strong> 完成，沒有使用 TypeScript 或前端框架。</p>
+          <ol>
+            <li>先規劃網站地圖與主要版面</li>
+            <li>再用 vibe coding 產生初稿</li>
+            <li>最後人手調整文字、表格與互動邏輯</li>
+          </ol>
+          <p class="small">評分相關重點：多頁結構、表格與文字、相片、CSS 外觀、格式化文字、合宜佈局、RWD、JS 輸入／選貨／數量與總額計算。</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner footer-grid">
+      <div>
+        <h3>巷口選物</h3>
+        <p>校園生活選物小店｜純前端靜態網站示範</p>
+      </div>
+      <div>
+        <h3>頁面</h3>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">商品一覽</a></li>
+          <li><a href="contact.html">聯絡／訂購</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>電郵：shop@lanemart.example</li>
+          <li>服務時間：週一至五 10:00–17:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inner credits">VIT2621 Mini Project｜版面採低圓角、低對比裝飾的樸素風格</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

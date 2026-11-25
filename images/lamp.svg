@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e6e6e2"/>
+  <rect x="185" y="160" width="30" height="80" fill="#2b3036"/>
+  <rect x="150" y="240" width="100" height="16" fill="#555"/>
+  <polygon points="200,60 260,160 140,160" fill="#f2f2f0" stroke="#2b3036" stroke-width="3"/>
+  <circle cx="200" cy="145" r="10" fill="#8b3a2b"/>
+  <text x="20" y="280" font-family="sans-serif" font-size="16" fill="#555">護眼枱燈</text>
+</svg>

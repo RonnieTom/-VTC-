@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="巷口選物商品一覽與線上選購">
+  <title>巷口選物｜商品一覽</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">巷口選物<span>校園生活選物小店</span></a>
+      <a class="cart-link" href="cart.html">購物車 (<span id="cart-count">0</span>)</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false">選單</button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+    <div class="nav-inner">
+      <a href="index.html">首頁</a>
+      <a href="products.html" class="active">商品一覽</a>
+      <a href="about.html">關於我們</a>
+      <a href="contact.html">聯絡／訂購</a>
+      <a href="cart.html">購物車</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-inner">
+      <section class="panel">
+        <h1>商品一覽</h1>
+        <p>請先瀏覽商品，再於下方表單<strong>選擇貨物與數量</strong>，按「計算小計」或「加入購物車」。系統會以 JavaScript 即時計算金額並顯示回應。</p>
+      </section>
+
+      <section class="grid-3" aria-label="商品列表">
+        <article class="product-card">
+          <div class="thumb"><img src="images/notebook.svg" width="400" height="300" alt="精裝筆記本 A5"></div>
+          <div class="body">
+            <h2 style="border:0;padding:0;font-size:1.1rem;">精裝筆記本 A5</h2>
+            <p class="small">橫線內頁 100 頁，硬皮封面。</p>
+            <p class="price">HK$ 28.00</p>
+            <div class="actions"><button type="button" class="btn btn-block" data-add-id="notebook">選此商品</button></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="thumb"><img src="images/pen.svg" width="400" height="300" alt="中性筆套裝"></div>
+          <div class="body">
+            <h2 style="border:0;padding:0;font-size:1.1rem;">中性筆套裝 (3支)</h2>
+            <p class="small">黑／藍／紅各一支，0.5mm。</p>
+            <p class="price">HK$ 18.00</p>
+            <div class="actions"><button type="button" class="btn btn-block" data-add-id="pen">選此商品</button></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="thumb"><img src="images/mug.svg" width="400" height="300" alt="陶瓷咖啡杯"></div>
+          <div class="body">
+            <h2 style="border:0;padding:0;font-size:1.1rem;">陶瓷咖啡杯</h2>
+            <p class="small">約 300ml，微波爐適用。</p>
+            <p class="price">HK$ 45.00</p>
+            <div class="actions"><button type="button" class="btn btn-block" data-add-id="mug">選此商品</button></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="thumb"><img src="images/tote.svg" width="400" height="300" alt="帆布購物袋"></div>
+          <div class="body">
+            <h2 style="border:0;padding:0;font-size:1.1rem;">帆布購物袋</h2>
+            <p class="small">可摺疊，適合日常採買。</p>
+            <p class="price">HK$ 55.00</p>
+            <div class="actions"><button type="button" class="btn btn-block" data-add-id="tote">選此商品</button></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="thumb"><img src="images/lamp.svg" width="400" height="300" alt="護眼枱燈"></div>
+          <div class="body">
+            <h2 style="border:0;padding:0;font-size:1.1rem;">護眼枱燈</h2>
+            <p class="small">三段色溫，USB 供電。</p>
+            <p class="price">HK$ 168.00</p>
+            <div class="actions"><button type="button" class="btn btn-block" data-add-id="lamp">選此商品</button></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="thumb"><img src="images/bottle.svg" width="400" height="300" alt="不鏽鋼水樽"></div>
+          <div class="body">
+            <h2 style="border:0;padding:0;font-size:1.1rem;">不鏽鋼水樽 500ml</h2>
+            <p class="small">輕量瓶身，防漏瓶蓋。</p>
+            <p class="price">HK$ 79.00</p>
+            <div class="actions"><button type="button" class="btn btn-block" data-add-id="bottle">選此商品</button></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel" style="margin-top:16px;" id="order-form">
+        <h2>選購表單（JavaScript 計算）</h2>
+        <p class="small">請輸入姓名、選擇商品與數量，再計算小計或加入購物車。</p>
+
+        <div class="form-row">
+          <label for="customer-name">顧客姓名 <span class="small">（必填）</span></label>
+          <input type="text" id="customer-name" name="customer-name" maxlength="40" placeholder="例如：陳同學" autocomplete="name">
+        </div>
+
+        <div class="form-inline">
+          <div class="form-row">
+            <label for="product-select">選擇貨物</label>
+            <select id="product-select" name="product">
+              <option value="">— 請選擇 —</option>
+              <option value="notebook">精裝筆記本 A5（HK$28）</option>
+              <option value="pen">中性筆套裝（HK$18）</option>
+              <option value="mug">陶瓷咖啡杯（HK$45）</option>
+              <option value="tote">帆布購物袋（HK$55）</option>
+              <option value="lamp">護眼枱燈（HK$168）</option>
+              <option value="bottle">不鏽鋼水樽（HK$79）</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="product-qty">數量</label>
+            <div class="qty-control">
+              <button type="button" id="qty-minus" aria-label="減少數量">−</button>
+              <input type="number" id="product-qty" name="qty" min="1" max="99" value="1" inputmode="numeric">
+              <button type="button" id="qty-plus" aria-label="增加數量">+</button>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <button type="button" class="btn" id="btn-calc">計算小計</button>
+          <button type="button" class="btn btn-secondary" id="btn-add">加入購物車</button>
+          <a class="btn btn-secondary" href="cart.html">前往購物車</a>
+        </p>
+
+        <div id="order-msg" class="msg" hidden></div>
+        <div class="summary-box" id="order-preview" aria-live="polite"></div>
+      </section>
+
+      <section class="panel">
+        <h2>價目參考表</h2>
+        <p>下表列出全部在售商品單價，方便對照。</p>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>貨號</th>
+              <th>商品名稱</th>
+              <th>類別</th>
+              <th>單價（HK$）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>N01</td><td>精裝筆記本 A5</td><td>文具</td><td class="num">28.00</td></tr>
+            <tr><td>P02</td><td>中性筆套裝 (3支)</td><td>文具</td><td class="num">18.00</td></tr>
+            <tr><td>M03</td><td>陶瓷咖啡杯</td><td>杯具</td><td class="num">45.00</td></tr>
+            <tr><td>T04</td><td>帆布購物袋</td><td>生活</td><td class="num">55.00</td></tr>
+            <tr><td>L05</td><td>護眼枱燈</td><td>電器</td><td class="num">168.00</td></tr>
+            <tr><td>B06</td><td>不鏽鋼水樽 500ml</td><td>生活</td><td class="num">79.00</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner footer-grid">
+      <div>
+        <h3>巷口選物</h3>
+        <p>校園生活選物小店｜純前端靜態網站示範</p>
+      </div>
+      <div>
+        <h3>頁面</h3>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡／訂購</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯絡</h3>
+        <ul>
+          <li>電郵：shop@lanemart.example</li>
+          <li>服務時間：週一至五 10:00–17:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inner credits">VIT2621 Mini Project｜圖片為本專題自製 SVG 示意圖</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>
